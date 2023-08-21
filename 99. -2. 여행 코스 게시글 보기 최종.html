@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여행 코스 게시글 보기</title>
+
+ <!-- w3schools 부트스트랩 -->
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+ <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+ <!-- 부트스트랩 -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+  
+
+    <style>
+        .wrap{
+            /* border: 1px solid red; */
+            width: 1000px;
+            height: 1200px;
+            margin: auto;
+            margin-top: 50px;
+        }
+
+        .wrap>div{
+            width: 100%;
+            box-sizing: border-box;
+            /* border: 1px solid blue; */
+        }
+
+
+
+
+        /* 맨 위 */
+        .corse1{
+          
+            height: 10%;
+            box-sizing: border-box;
+        }
+
+
+        /* corse1 여행코스 게시글 부분도 나누기 */
+        /* id가 각각 upword/ upimg */
+        
+        #up>div{
+            width: 500px;
+            height: 100%;
+            box-sizing: border-box;
+            float: left;
+            /* border: 1px solid red; */
+        }
+
+
+        /* 여행 코스 게시글 글씨 부분 */
+        #upword{
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+
+        /* 좋아요/신고 이미지 */
+        #upimg{
+            width: 50%;
+            box-sizing: border-box;
+            
+        }
+
+        #up-img>img{
+            padding-top: 30px;
+            cursor: pointer;
+        }
+
+
+
+
+        /* 제목, 파일(사진) */
+        .corse2{
+            height: 8%;
+            box-sizing: border-box;
+        }
+
+       
+
+        /* 지도(사진) */
+        .corse3{
+            height: 27%;
+            box-sizing: border-box;
+        }
+
+        /* 코스 순서 */
+        .corse4{
+            height: 25%;
+            box-sizing: border-box;
+        }
+
+        /* 코스 내용 */
+        .corse5{
+            height: 15%;
+            box-sizing: border-box;
+        }
+
+
+         /* 꿀팁란 */
+        .corse6{
+        height: 15%;
+        box-sizing: border-box;
+        }
+
+
+      
+
+
+
+
+        /* 세세하게 나누기 */
+
+        /* 맨 위 상단 */
+        #up{
+            font-size: 20px;
+            color: gray;
+            font-weight: bold;
+            padding-bottom: 50px;
+        }
+
+
+        /* corse2 나누기 (코스 제목)  */
+        .corse2>div{
+            /* border: 1px dashed green; */
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        #corseTitle{
+            height: 40%;
+            box-sizing: border-box;
+        }
+
+        /* 제목입력 input */
+        #corseTitle>h1{
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            color: gray;
+            
+        }
+
+        /* 첨부 파일 */
+        #file{
+            height: 60%;
+            box-sizing: border-box;
+            background-color: #f7f7f7;
+            position: relative;
+        }
+
+        #file>input{
+            position: absolute;
+            margin-left: 10px;
+            margin-top: 13px;
+        }
+
+
+
+         /* 지도(사진) */
+         .corse3{
+            height: 23%;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+
+        /* 코스 순서 */
+       .corse4{
+            height: 39%;
+            box-sizing: border-box;
+            margin-top: 50px;
+        }
+
+        /* 코스 내용 */
+        .corse5{
+            height: 20%;
+            box-sizing: border-box;
+        }
+
+         /* 꿀팁란 */
+        .corse6{
+        height: 10%;
+        box-sizing: border-box;
+        }
+
+
+      
+       
+
+
+
+        /* 세세하게 나누기 */
+
+        /* corse2 나누기  */
+        .corse2>input{
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        /* 지도 사진*/
+        .corse3>img{
+            height: 100%;
+            margin-left: 150px;
+          
+        }
+
+        /* 내용입력란 */
+        #corseContent>textarea{
+            margin-top: 40px;
+            height: 80%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+
+        /* corse4 */
+        /* 사용자가 선택한 코스 목록 div */
+        .corse4>div{
+            /* border: 1px solid lightgray; */
+            height: 20%;
+            width: 80%;
+            box-sizing: border-box;
+            margin: 10px 0 10px 75px;
+            /* background-color: lightgray;  */
+            
+
+        }
+
+        /* 첫번째 여행 코스 */
+        #seq1>div{
+            /* border: 1px solid lightgrey; */
+            height: 100%;
+            box-sizing: border-box;
+            float: left;
+        }
+
+        /* 여행 코스 순서 */
+        #seq1-1{
+            width: 10%;
+            box-sizing: border-box;
+          
+
+            padding: 30px;
+        
+        
+            
+        }
+      
+        /* 여행 코스 장소명이 적힌 p태그 */
+        p{
+            text-decoration: none;
+            color: gray;
+            line-height: 80px;
+            font-size: 15px;
+            cursor: pointer;
+
+        }
+        
+        /* 여행 코스 사진 부분  */
+        #seq1-2{
+            width: 25%;
+            box-sizing: border-box;
+            border: 1px solid #f7f7f7;
+            border-right: 0;
+            background-color: #f7f7f7;
+           
+        }
+
+        /* 여행 코스 장소명 부분  */
+        #seq1-3{
+            width: 65%;
+            box-sizing: border-box;
+            border: 1px solid #f7f7f7;
+            border-left: 0;
+            background-color: #f7f7f7;
+        }
+
+
+        /* 두 번째 여행코스 목록  */
+        #seq2>div{
+            /* border: 1px solid lightgrey; */
+            height: 100%;
+            box-sizing: border-box;
+            float: left;
+        }
+
+        /* 여행 코스 순서  */
+        #seq2-1{
+            width: 10%;
+            box-sizing: border-box;
+            padding: 30px;
+        }
+      
+        /* 사진 */
+        #seq2-2{
+            width: 25%;
+            box-sizing: border-box;
+            border: 1px solid #f7f7f7;
+            border-right: 0;
+            background-color: #f7f7f7;
+        }
+
+        /* 장소명 */
+        #seq2-3{
+            width: 65%;
+            box-sizing: border-box;
+            border: 1px solid #f7f7f7;
+            border-left: 0;
+            background-color: #f7f7f7;
+        }
+
+
+        /* 세번째 여행 코스 */
+        #seq3>div{
+            /* border: 1px solid lightgrey; */
+            height: 100%;
+            box-sizing: border-box;
+            float: left;
+        }
+
+        /* 여행코스 순서 번호 */
+        #seq3-1{
+            width: 10%;
+            box-sizing: border-box;
+            padding: 30px;
+        }
+      
+        /* 사진 */
+        #seq3-2{
+            width: 25%;
+            box-sizing: border-box;
+            border: 1px solid #f7f7f7;
+            border-right: 0;
+            background-color: #f7f7f7;
+        }
+
+        /* 장소명 */
+        #seq3-3{
+            width: 65%;
+            box-sizing: border-box;
+            border: 1px solid #f7f7f7;
+            border-left: 0;
+            background-color: #f7f7f7;
+        }
+
+
+        /* 네번째 여행코스 목록 */
+        #seq4>div{
+            /* border: 1px solid lightgrey; */
+            height: 100%;
+            box-sizing: border-box;
+            float: left;
+        }
+
+
+        /* 여행코스 순서 번호 */
+        #seq4-1{
+            width: 10%;
+            box-sizing: border-box;
+            padding: 30px;
+        }
+      
+        
+        /* 사진 */
+        #seq4-2{
+            width: 25%;
+            box-sizing: border-box;
+            border: 1px solid #f7f7f7;
+            border-right: 0;
+            background-color: #f7f7f7;
+        }
+
+        /* 장소명 */
+        #seq4-3{
+            width: 65%;
+            box-sizing: border-box;
+            border: 1px solid #f7f7f7;
+            border-left: 0;
+            background-color: #f7f7f7;
+        }
+
+
+        /* 여행 코스 목록 사진의 스타일 부분 */
+        .corse4 img{
+            height: 80%;
+            width: 70%;
+            margin-top: 10px;
+            margin-left: 10px;
+            border-radius: 20px;
+        }
+
+
+
+
+
+        /* corse6 */
+        /* 꿀팁부분 */
+        .corse6>textarea{
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+       
+        }
+        
+
+        /* 하단의 수정/삭제/목록 버튼 부분  */
+        #button{
+        text-align: right;
+       }
+
+
+
+
+       /* 모달 부분  */
+
+       
+
+       .modal>div{
+        width: 400px ;
+        box-sizing: border-box;
+        /* border: 1px solid blue; */
+     
+
+       }
+
+       /*  모달 여행 사진 */
+       #modal1{
+        height: 50%;
+
+       }
+
+       /* 모달 여행 제목 */
+       #modal2{
+        height: 10%;
+        /* border: 1px solid orange; */
+       }
+
+       /* 모달 여행지 내용 */
+       #modal3{
+        width: 70%;
+        height: 30%;
+        margin-top: 20px;
+        margin-left: 60px;
+        /* border: 1px solid orange; */
+       }
+
+
+       /* 모달 버튼들 */
+       #modal4{
+        height: 10%;
+        margin-top: 50px;
+       
+       }
+
+       /* 모달 세부사항 */
+
+       /* 모달 사진 스타일 */
+       #modal1>img{
+        width: 70%;
+        height: 50%;
+        margin-left: 60px;
+        margin-top: 20px;
+        
+       }
+
+       /* 모달 여행 제목 스타일 */
+       #modal2>h3{
+        margin-top: 20px;
+        margin-left: 60px;
+       }
+      
+       /* 모달 버튼 스타일 */
+       #modal4>div{
+        height: 100%;
+        float: left;
+        /* border: 1px solid orange; */
+       }
+
+       #modal-btn1{
+        width:70%;
+        padding-left: 60px;
+        margin-bottom: 50px;
+        cursor: pointer;
+        
+       }
+
+       #modal-btn1>span{
+        margin-left: 5px;
+        font-size: 14px;
+       }
+
+
+       #modal-btn2{
+        width: 30%;
+        text-align: right;
+        padding-right: 50px ;
+        margin-bottom: 50px;
+       }
+
+       
+       /* 모달 닫기 버튼  */
+       .close{
+       margin-right: 20px;
+       
+       }
+
+
+       /* 댓글 창 움직이지 않게 고정하는 스타일 */
+       .card-footer{
+        background-attachment: fixed; 
+        margin-left: 260px;
+       }
+
+       /* .modal-content{
+        background-color: lightgray;
+       }
+        */
+
+    </style>
+
+
+</head>
+<body>
+    <div class="wrap">
+
+
+         <!------------------------------여행 코스 게시글------------------------------>
+        <div class="corse1" id="up">
+            <div id="up-word">
+
+                <b>[여행 코스 게시글]</b>
+            </div>
+
+
+             <!------------------------------좋아요/신고------------------------------->
+            <div id="up-img">
+                <img src="image/report.png" align="right" style="width: 35px;" id="report" >
+                <img src="image/heart1.png" align="right" style="width: 35px;" id="like" onclick="likeToggle();">
+            </div>
+
+
+        </div>
+
+        
+
+    
+      <!------------------------------코스 제목------------------------------->
+        <div class="corse2" id="corseTitle-file">
+            <div id="corseTitle">
+              
+                <h1 align="center" style="line-height: 0px;"> <b>사용자가 입력한 제목</b> </h1>
+                hr
+            </div>
+
+
+             <!------------------------------사진 첨부------------------------------->
+            <div id="file">
+                <input type="file">
+            </div>
+
+        </div>
+
+
+         <!------------------------------지도------------------------------->
+        <div class="corse3" id="map">
+              <!-- 지도를 첨부할 수 있는지 몰라서 일단 임시로 사진으로 대체 -->
+              <img src="resources/image/지도.png" >
+        </div>
+
+
+         <!------------------------------사용자가 선택한 코스------------------------------->
+        <div class="corse4" id="sequence">
+
+               
+                <div id="seq1">
+                    <div id="seq1-1">1</div>
+
+                    <div id="seq1-2">
+                        <img src="image/경복궁.jpg">
+                    </div>
+
+                    <div id="seq1-3">
+                        <!-- p태그로 감싸서 누르면 모달 뜨게! -->
+                        <!-- 모달에는 해당 장소에 대한 자세한 사항이 있음 -->
+                        <!-- 모달안에는 바꾸기 하단에 p태그 있음  -->
+
+                        <p data-toggle="modal" data-target="#myModal" >경복궁 (景福宮 | Gyeongbokgung Palace)</p>
+
+                    </div>
+               
+                </div>
+ 
+             
+
+              <div id="seq2">
+                    <div id="seq2-1">2</div>
+                    <div id="seq2-2">
+                        <img src="resources/image/flower4.PNG" alt="">
+                    </div>
+
+                    <div id="seq2-3"><p data-toggle="modal" data-target="#myModal">덕수궁 (德壽宮 | Deoksugung)</p></div>
+              </div>
+
+              <div id="seq3">
+                    <div id="seq3-1">3</div>
+                    <div id="seq3-2">
+                        <img src="resources/image/forest1.PNG" alt="">
+                    </div>
+
+                    <div id="seq3-3"><p  data-toggle="modal" data-target="#myModal" >창덕궁 (昌德宮 | Changdeokgung)</p></div>
+              </div>
+
+              <div id="seq4">
+                    <div id="seq4-1">4</div>
+                    <div id="seq4-2">
+                        <img src="resources/image/river2.PNG" alt="">
+                    </div>
+
+                    <div id="seq4-3"><p  data-toggle="modal" data-target="#myModal">광화문 (光化門 | Gwanghwamun)</p></div>
+              </div>
+              
+
+
+
+        </div>
+
+         <!------------------------------코스 내용------------------------------->
+
+        <div class="corse5" id="corseContent">
+             
+            <textarea name="corseContent" style="resize: none;"> 사용자가 입력한 내용 </textarea>
+        </div>
+
+
+         <!------------------------------코스 꿀팁------------------------------->
+        <div class="corse6" id="tip">
+            <textarea name="tip" id="tip" style="resize: none;">사용자가 입력한 꿀팁!</textarea>
+        </div>
+
+        
+
+         <!------------------------------ 수정/삭제/목록 버튼 ------------------------------>
+        
+        <div id="button">
+            <br><br>
+
+            <!-- 로그인을 하고 해당 게시물의 작성자일 경우만 수정/삭제 가능하게 하기 -->
+            <a href="#" class="btn btn-secondary" > 수정</a>
+            <!-- 수정 누르면 수정하는 jsp로 넘어가게 -->
+
+            <a href="#" class="btn btn-secondary" > 삭제</a>
+             <!-- 삭제 누르면 삭제하는 서블릿으로 넘어가게 -->
+
+
+
+             <!-- 목록은 로그인/작성자 여부 상관없이 항상 보이게 하기 -->
+            <a href="#" class="btn btn-secondary" > 목록</a>
+             <!-- 목록 누르면 목록보여주는 jsp로 넘어가게 -->
+
+
+             <br><br><br>
+             <hr>
+             
+             
+             
+            </div>
+
+            <div id="reply">
+
+                
+
+            </div>
+            
+            
+        </div>
+        
+        
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <!------------------------------댓글------------------------------->
+        
+        <div class="card-footer" style="width: 1000px;">
+           <form onsubmit="addComment(event)" action="#">
+             <div class="form-group">
+               <input type="text" class="form-control" placeholder="댓글을 입력하세요" required>
+             </div>
+
+             <button type="submit" class="btn btn-primary">작성</button>
+
+           </form>
+
+             <div class="comments mt-3">
+              
+            </div>
+       </div>
+
+ 
+      
+  
+
+     <!------------------------------- 모달 ---------------------------->
+   <!-- The Modal -->
+   <div class="modal" id="myModal"> <!-- data-target의 이름과 id의 이름이 일치해야지 실행이 됨-->
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+       
+  
+        <!-- Modal body -->
+        <!-- 모달 버튼 누르면 바로 로그인 할 수 있게 도 됨!! -->
+       
+           
+                <div id="modal1">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <img src="image/경복궁.jpg">
+                </div>
+
+                <div id="modal2">
+                    <h3> <b>경복궁</b></h3>
+                </div>
+
+                <div id="modal3">
+                  <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, praesentium quidem et veritatis, id reprehenderit ipsam corrupti numquam natus nobis quos eum, recusandae eius corporis aperiam labore alias amet dignissimos?</span>
+                </div>
+
+
+                <div id="modal4">
+
+                    <div id="modal-btn1">
+                        <img src="image/화살표.png" style="width: 20px; height: 20px;" onclick="modalClick();">
+                        <span onclick="modalClick();">자세히 보러가기</span>
+                    </div>
+
+                    <div id="modal-btn2">
+                        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">닫기</button>
+
+                    </div>
+
+                </div>
+             
+             </div>
+  
+            
+  
+      
+    </div>
+  </div>
+
+ 
+  <script>
+    var h = 1;
+    function likeToggle() {
+        var like = document.getElementById("like");
+        if(h % 2 == 1) {
+            like.src="image/heart2.png";
+        }else {
+            like.src="image/heart1.png";
+        }
+        h++;
+
+    }
+</script>
+
+
+
+<script>
+
+   // 댓글에 대한 함수
+   // 댓글 작성자에 대한 변수도 설정해서 넣어야 할 듯
+    function addComment(event) {
+                event.preventDefault();
+                var commentInput = event.target.querySelector("input");
+                var commentText = commentInput.value;
+                var date = new Date().toLocaleString();
+            
+                var commentDiv = document.createElement("div");
+                commentDiv.className = "card my-3";
+                commentDiv.innerHTML = `
+                <div class="card-body">
+                    <p class="card-text">${commentText}</p>
+                    <p class="card-text"><small class="text-muted">${date}</small></p>
+                </div>
+                `;
+            
+                var commentsDiv = event.target.parentNode.querySelector(".comments");
+                commentsDiv.insertBefore(commentDiv, commentsDiv.firstChild);
+            
+                commentInput.value = "";
+            }
+
+
+    // 모달에 대한 함수
+    function modalClick(){
+        location.href="#";
+        // 화살표 이미지와 자세히보러가기 글씨를 클릭히면 해당 여행지에 대한 정보로 이동하게 
+        // href 쏘기!!
+    };
+
+</script>
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
