@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>header3_weather</title>
+    <style>
+        .wrap{
+            border: 1px solid red;
+            width: 1000px;
+            height: 1200px;
+            margin: auto;
+            /* box-sizing: border-box; */
+        }
+        #header{
+            border: 1px solid blue;
+            width: 100%;
+            box-sizing: border-box;
+            height: 14%;
+        }
+
+        #header>div{
+            border: 2px solid yellow;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+        }
+
+        #header_3{width: 15%;}
+
+        #weather{
+            border: 3px solid purple;
+            margin-top: 30px;
+            width: 135px;
+        }
+
+        #weather>a{text-decoration: none;}
+        
+
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div id="header">
+            <div id="header_3">
+                <!-- 날씨 -->
+                <div id="weather">
+                    <!-- Weather widget by https://meteodays.com -->
+                    <a id="ms-informer-link-1c0f2690c0b614035a8e37b7b9f11ada" class="ms-informer-link" href="https://meteodays.com/ko/weather/overview/seoul">서울날씨</a>
+                    <script class="ms-informer-script" src="https://meteodays.com/ko/informer/script/1c0f2690c0b614035a8e37b7b9f11ada"></script>
+                    <!-- End -->
+                </div>
+            </div>
+        </div>    
+    </div>        
+
+    
+</body>
+</html>
