@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여행후기 리스트</title>
+
+    <!-- w3schools 부트스트랩 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        div * {box-sizing: border-box;}
+
+        .all {
+            margin: auto;
+            width: 1000px;
+            height: 1600px;
+        }
+        
+        /* ---------------content_h----------------- */
+        #content_h {
+            width: 100%;
+            height: 50px;
+        }
+
+        #content_h>div {
+            height: 100%;
+            float: left;        /**/
+            line-height: 50px; /*이 div의 height가 50px이니까*/
+        }
+
+        #content_h>#content_h_1 {
+            width: 80%;
+            color: gray;
+        }
+        #content_h>#content_h_2 {
+            width: 20%;
+            padding-left: 60px;
+            color: gray;
+            font-size: bold;
+        }
+        #content_h>#content_h_2>a {
+            text-decoration: none;
+            color: gray;
+            font-size: bold;
+            
+        }
+        
+        /* ---------------content_b----------------- */
+        #content_b {
+            width: 100%;
+            height: 1000px;
+        }
+        
+        #content_b>#content_b_1 {
+            width: 100%;
+            height: 950px;
+        }
+
+        #content_b>#content_b_1>ul>li {
+            list-style: none;
+            width: 25%;   /* 한줄에 4개씩 */
+            height: 50%;
+            float: left;
+            padding: 5px 5px;
+            text-align: left;
+        }
+
+        #content_b>#content_b_1>ul>li>a {
+            position: relative;
+            
+        }
+
+        #content_b>#content_b_1 .reviewImg {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+        }
+
+        #content_b>#content_b_1 .heartImg {
+            width: 30px;
+            position: relative;
+            top: 195px;
+            left: 190px;
+        }
+
+        #content_b>#content_b_1 .reviewTitle {
+            width: 100%;
+            color: gray;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 0px;
+        }
+        #content_b>#content_b_1 .reviewAddress {
+            width: 100%;
+            color: lightgray;
+            font-weight: bold;
+            font-size: 12px;
+            margin-bottom: 0px;
+        }
+        
+
+        #content_b>#content_b_2 {
+            width: 100%;
+            height: 50px;
+            padding-top: 12px;
+        }
+
+
+        
+        /* ---------------content_f----------------- */
+        #content_f {
+            width: 100%;
+            height: 200px;
+        }
+
+        #content_f>#content_f_1 {
+            width: 100%;
+            height: 100px;
+            /* 자식 요소(.pagination)를 중앙 정렬하기 */
+            display: flex;
+            justify-content: center;
+        }
+
+        #content_f>#content_f_2 {
+            width: 100%;
+            height: 100px;
+            /* 자식 요소(.pagination)를 중앙 정렬하기 */
+            display: flex;
+            justify-content: center;
+
+        }
+        .wrapDropSearch>* {
+            height: 100%;
+            float: left;
+        }
+
+    </style>
+
+
+</head>
+<body>
+    <div class="all">
+
+        <!------------------------------content_h------------------------------->
+        <div id="content_h">
+            <div id="content_h_1">
+                '<span id="reviewsSearchResult"><b>전체</b></span>' 에 대한 검색 결과 
+            </div>
+            <div id="content_h_2">
+                <a href="#">최신순</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="#">인기순</a>
+            </div>
+        </div>
+
+
+        <!------------------------------content_b------------------------------->
+        <div id="content_b">
+            <div id="content_b_1">
+
+
+                <ul>
+                    <li id="con1">
+                        <a href="#">
+                            <img src="image/heart1.png" class="heartImg" id="con1h" onclick="likeToggle1()">
+                            <img src="image/여의도한강공원.png" class="reviewImg"> <br><br>
+                            <p class="reviewTitle">여의도 한강공원</p>
+                            <p class="reviewAddress">서울시 영등포구 여의동로 330</p>
+                        </a>
+
+                        <script>
+                            var h = 1;
+                            function likeToggle1() {
+                                var like = document.getElementById("con1h");
+                                if(h % 2 == 1) {
+                                    like.src="image/heart2.png";
+                                }else {
+                                    like.src="image/heart1.png";
+                                }
+                                h++;
+                            }
+                        </script>
+                    </li>
+                    <li id="con2">
+                        <a href="#">
+                            <img src="image/heart1.png" class="heartImg" id="con2h" onclick="likeToggle2();">
+                            <img src="image/남산타워.png" class="reviewImg"> <br><br>
+                            <p class="reviewTitle">명동 남산타워</p>
+                            <p class="reviewAddress">서울시 영등포구 여의동로 330</p>
+                        </a>
+                        <script>
+                            var h = 1;
+                            function likeToggle2() {
+                                var like = document.getElementById("con2h");
+                                if(h % 2 == 1) {
+                                    like.src="image/heart2.png";
+                                }else {
+                                    like.src="image/heart1.png";
+                                }
+                                h++;
+                            }
+                        </script>
+                    </li>
+                    <li id="con3">
+                        <a href="#">
+                            <img src="image/heart1.png" class="heartImg" id="con3h" onclick="likeToggle3();">
+                            <img src="image/별마당도서관.png" class="reviewImg"> <br><br>
+                            <p class="reviewTitle">코엑스 별마당도서관</p>
+                            <p class="reviewAddress">서울시 영등포구 여의동로 330</p>
+                        </a>
+                        <script>
+                            var h = 1;
+                            function likeToggle3() {
+                                var like = document.getElementById("con3h");
+                                if(h % 2 == 1) {
+                                    like.src="image/heart2.png";
+                                }else {
+                                    like.src="image/heart1.png";
+                                }
+                                h++;
+                            }
+                        </script>
+                    </li>
+                    <li id="con4">
+                        <a href="#">
+                            <img src="image/heart1.png" class="heartImg" id="con4h" onclick="likeToggle4();">
+                            <img src="image/청계천.png" class="reviewImg"> <br><br>
+                            <p class="reviewTitle">청계천</p>
+                            <p class="reviewAddress">서울시 영등포구 여의동로 330</p>
+                        </a>
+                        <script>
+                            var h = 1;
+                            function likeToggle4() {
+                                var like = document.getElementById("con4h");
+                                if(h % 2 == 1) {
+                                    like.src="image/heart2.png";
+                                }else {
+                                    like.src="image/heart1.png";
+                                }
+                                h++;
+                            }
+                        </script>
+                    </li>
+                    <li id="con5">
+                        <a href="#">
+                            <img src="image/heart1.png" class="heartImg" id="con5h" onclick="likeToggle5();">
+                            <img src="image/코엑스아쿠아리움.png" class="reviewImg"> <br><br>
+                            <p class="reviewTitle">코엑스 아쿠아리움</p>
+                            <p class="reviewAddress">서울시 영등포구 여의동로 330</p>
+                        </a>
+                        <script>
+                            var h = 1;
+                            function likeToggle5() {
+                                var like = document.getElementById("con5h");
+                                if(h % 2 == 1) {
+                                    like.src="image/heart2.png";
+                                }else {
+                                    like.src="image/heart1.png";
+                                }
+                                h++;
+                            }
+                        </script>
+                    </li>
+                    <li id="con6">
+                        <a href="#">
+                            <img src="image/heart1.png" class="heartImg" id="con6h" onclick="likeToggle6();">
+                            <img src="image/광장시장.png" class="reviewImg"> <br><br>
+                            <p class="reviewTitle">광장시장</p>
+                            <p class="reviewAddress">서울시 영등포구 여의동로 330</p>
+                        </a>
+                        <script>
+                            var h = 1;
+                            function likeToggle6() {
+                                var like = document.getElementById("con6h");
+                                if(h % 2 == 1) {
+                                    like.src="image/heart2.png";
+                                }else {
+                                    like.src="image/heart1.png";
+                                }
+                                h++;
+                            }
+                        </script>
+                    </li>
+                    <li id="con7">
+                        <a href="#">
+                            <img src="image/heart1.png" class="heartImg" id="con7h" onclick="likeToggle7();">
+                            <img src="image/경복궁.jpg" class="reviewImg"> <br><br>
+                            <p class="reviewTitle">경복궁</p>
+                            <p class="reviewAddress">서울시 영등포구 여의동로 330</p>
+                        </a>
+                        <script>
+                            var h = 1;
+                            function likeToggle7() {
+                                var like = document.getElementById("con7h");
+                                if(h % 2 == 1) {
+                                    like.src="image/heart2.png";
+                                }else {
+                                    like.src="image/heart1.png";
+                                }
+                                h++;
+                            }
+                        </script>
+                    </li>
+                    <li id="con8">
+                        <a href="#">
+                            <img src="image/heart1.png" class="heartImg" id="con8h" onclick="likeToggle8();">
+                            <img src="image/익선동.png" class="reviewImg"> <br><br>
+                            <p class="reviewTitle">종로 익선동</p>
+                            <p class="reviewAddress">서울시 영등포구 여의동로 330</p>
+                        </a>
+                        <script>
+                            var h = 1;
+                            function likeToggle8() {
+                                var like = document.getElementById("con8h");
+                                if(h % 2 == 1) {
+                                    like.src="image/heart2.png";
+                                }else {
+                                    like.src="image/heart1.png";
+                                }
+                                h++;
+                            }
+                        </script>
+                    </li>
+                    <li id="con9">
+                        <a href="#">
+                            <img src="image/heart1.png" class="heartImg" id="con9h" onclick="likeToggle9();">
+                            <img src="image/롯데타워.png" class="reviewImg"> <br><br>
+                            <p class="reviewTitle">롯데타워</p>
+                            <p class="reviewAddress">서울시 영등포구 여의동로 330</p>
+                        </a>
+                        <script>
+                            var h = 1;
+                            function likeToggle9() {
+                                var like = document.getElementById("con9h");
+                                if(h % 2 == 1) {
+                                    like.src="image/heart2.png";
+                                }else {
+                                    like.src="image/heart1.png";
+                                }
+                                h++;
+                            }
+                        </script>
+                    </li>
+                    <li id="con10">
+                        <a href="#">
+                            <img src="image/heart1.png" class="heartImg" id="con10h" onclick="likeToggle10();">
+                            <img src="image/어린이대공원.png" class="reviewImg"> <br><br>
+                            <p class="reviewTitle">서울 어린이대공원</p>
+                            <p class="reviewAddress">서울시 영등포구 여의동로 330</p>
+                        </a>
+                        <script>
+                            var h = 1;
+                            function likeToggle10() {
+                                var like = document.getElementById("con10h");
+                                if(h % 2 == 1) {
+                                    like.src="image/heart2.png";
+                                }else {
+                                    like.src="image/heart1.png";
+                                }
+                                h++;
+                            }
+                        </script>
+                    </li>
+                    <li id="con11">
+                        <a href="#">
+                            <img src="image/heart1.png" class="heartImg" id="con11h" onclick="likeToggle11();">
+                            <img src="image/낙산공원.png" class="reviewImg"> <br><br>
+                            <p class="reviewTitle">혜화 낙산공원</p>
+                            <p class="reviewAddress">서울시 영등포구 여의동로 330</p>
+                        </a>
+                        <script>
+                            var h = 1;
+                            function likeToggle11() {
+                                var like = document.getElementById("con11h");
+                                if(h % 2 == 1) {
+                                    like.src="image/heart2.png";
+                                }else {
+                                    like.src="image/heart1.png";
+                                }
+                                h++;
+                            }
+                        </script>
+                    </li>
+                    <li id="con12">
+                        <a href="#">
+                            <img src="image/heart1.png" class="heartImg" id="con12h" onclick="likeToggle12();">
+                            <img src="image/서울숲.png" class="reviewImg"> <br><br>
+                            <p class="reviewTitle">서울숲</p>
+                            <p class="reviewAddress">서울시 영등포구 여의동로 330</p>
+                        </a>
+                        <script>
+                            var h = 1;
+                            function likeToggle12() {
+                                var like = document.getElementById("con12h");
+                                if(h % 2 == 1) {
+                                    like.src="image/heart2.png";
+                                }else {
+                                    like.src="image/heart1.png";
+                                }
+                                h++;
+                            }
+                        </script>
+                    </li>
+                </ul>
+                
+                
+
+
+            </div>
+            <div id="content_b_2" align="right">
+                <button type="button" id="writeBtn" class="btn btn-secondary">글쓰기</button>
+            </div>
+        </div>
+
+
+        <!------------------------------content_f------------------------------->
+        <div id="content_f">
+            <div id="content_f_1">
+
+                <nav class="navbar navbar-expand-sm ">
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                          전체
+                        </button>
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" href="#">작성자</a>
+                          <a class="dropdown-item" href="#">제목 + 내용</a>
+                          <a class="dropdown-item" href="#">해시태그</a>
+                        </div>
+                    </div>
+
+                    <form class="form-inline" action="/action_page.php">
+                      <input class="form-control mr-sm-2" type="text" placeholder="검색어를 입력해주세요!">
+                      <button class="btn btn-primary" type="submit">검색</button>
+                    </form>
+                </nav>
+                
+            </div>
+
+            <div id="content_f_2">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">&lt;</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                    <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
+                  </ul>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
