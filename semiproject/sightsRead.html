@@ -14,6 +14,11 @@
     <!-- 부트스트랩 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
 
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+
     <style>
         div * {box-sizing: border-box;}
 
@@ -101,6 +106,45 @@
             float: left;
         }
         
+
+        /*------슬라이드쇼------*/
+
+        
+          .swiper-button-next, .swiper-button-prev {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+       
+        .swiper-button-next, .swiper-button-prev {
+            width: 30px;
+            height: 30px;
+            font-size: 20px;
+            line-height: 1;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .swiper-button-prev {
+            left: 10px;
+        }
+        
+        .swiper-button-next {
+            right: 10px;
+        }
+
+        .swiper-slide img { /* 슬라이드 이미지 크기 자유롭게 변경하시면 됩니다 */
+            width: 850px; 
+            height: 500px; 
+        }
+    </style>
+
     </style>
 </head>
 
@@ -123,27 +167,39 @@
                         </div>
                         
                         <div id="contentIcon">
-                            <img src="../게시글form공통/image/heart1.png" id="like" onclick="likeToggle()">
+                            <img src="resources/images/heart1.png" id="like" onclick="likeToggle()">
                             <script>
                                 var h = 1;
                                 function likeToggle() {
                                     var like = document.getElementById("like");
                                     if(h % 2 == 1) {
-                                        like.src="../게시글form공통/image/heart2.png";
+                                        like.src="resources/images/heart2.png";
                                     }else {
-                                        like.src="../게시글form공통/image/heart1.png";
+                                        like.src="resources/images/heart1.png";
                                     }
                                     h++;
                                 }
                             </script>
-                            <img src="../게시글form공통/image/report.png" id="report">
+                            <img src="resources/images/report.png" id="report">
                         </div>
                     </div>
                     <br><br>
+                    <!--슬라이드 swiper-->
                     <div id="con1_photo" align="center">
-                        <img src="resources/images/gwangjang.webp">
+                        
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper"> <!--슬라이드 이미지 원하는만큼 추가-->
+                                <div class="swiper-slide"><img src="resources/images/gwangjang.webp"></div>
+                                <div class="swiper-slide"><img src="resources/images/gwangjang2.webp"></div>
+                                <div class="swiper-slide"><img src="resources/images/gwangjang3.webp"></div>
+                                
+                            </div>
+                           
+                            <div class="swiper-button-next">&#9658;</div>
+                            <div class="swiper-button-prev">&#9668;</div>
+                        </div>
                     </div>
-                    
+                    <!--슬라이드 끝-->
                     <div id="con1_content">
                         <p>사장님이 친절하고 음식이 맛있고 인심이 느껴져요 정말이에요</p>
                         
@@ -197,6 +253,22 @@
                 </div>
         
             </div>
+
+
+            <!-------슬라이드 전용 swiper------>
+            <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+            <script>
+                var swiper = new Swiper('.swiper-container', {
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    slidesPerView: 1,  
+                    spaceBetween: 10, 
+                });
+            </script>
+
+
 
             <!------------------------------content_f------------------------------->
             
