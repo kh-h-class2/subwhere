@@ -8,7 +8,7 @@
     <style>
         
         .wrap{
-            /* border: 2px solid red; */
+            border: 2px solid red;
             width: 1000px;
             height: 1200px;
             margin: auto;
@@ -16,42 +16,44 @@
         }
 
         .header{
-            /* border: 2px solid blue; */
+            border: 2px solid blue;
             background-color: aliceblue;
             width: 100%;
             box-sizing: border-box;
             height: 14%;
         }
 
-        .body{
-            /* border: 1px solid green; */
-            width: 100%;
-            box-sizing: border-box;
-            height: 65%;
-            margin-bottom: 20px;
-        }
-
-        .footer{
-            /* border: 1px solid purple; */
-            width: 100%;
-            box-sizing: border-box;
-            height: 15%;
-        }
-
-        #navigator{
-            /* border: 2px solid yellowgreen; */
-            width: 100%;
-            box-sizing: border-box;
-            height: 6%;
-            margin-top: 15px;
-            background-color: rgb(236, 236, 236);
-        }
-
         .header>div{
-            /* border: 1px solid yellow; */
+            border: 1px solid yellow;
             height: 100%;
             float: left;
             box-sizing: border-box;
+        }
+
+        .body{
+            border: 1px solid green;
+            width: 100%;
+            box-sizing: border-box;
+            height: 65%;
+            padding-bottom: 20px;
+        }
+        
+
+        #navigator{
+            border: 2px solid yellowgreen;
+            width: 100%;
+            box-sizing: border-box;
+            height: 6%;
+            background-color: rgb(236, 236, 236);
+        }
+
+        
+
+        .footer{
+            border: 1px solid purple;
+            width: 100%;
+            box-sizing: border-box;
+            height: 15%;
         }
 
         
@@ -95,7 +97,7 @@
             position: relative;
         }
         #weather{
-            /* border: 3px solid purple; */
+            border: 3px solid purple;
             margin-top: 50px;
             /* line-height: 80px; */
             width: 135px;
@@ -139,29 +141,42 @@
             display: inline-block;
         }
 
-        #usermenu{
-            /* border: 1px solid; */
+
+        #usermenu{ /*햄버거버튼*/
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-color: transparent; /* 뒷 배경을 부모와 같게 맞춰줌 */
+            border:none;
+            margin-top: 1rem;
             float: right;
-            margin-top: 60px;
-            /* line-height: 165px; */
-            margin-right: 5px;
-            cursor: pointer;
+            margin-top: 55px;
+            
         }
 
-        #usermenu>img{
-            width: 50px;
+        #usermenu>img{ /*햄버거사진*/
+            width: 45px;
         }
 
-        /*---------------------------------*/
+        #usermenu_page{
+            width: 400px; 
+            height: 600px;
+            position: absolute;
+            display: none;
+            /* margin-right: 500px; */
+            border: 0.1px solid lightgray;
+            border-radius: 1rem;
+            background-color: #ededed;
+            z-index: 9999;
+            right: 1px;
+            top: 120px;
+            box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+        }
 
-        /* #user_account a{
-            font-size: small;
-        } */
-        
         /*---------------------------------*/
 
         #navigator li{
-            /* border: 1px solid; */
+            border: 1px solid;
         }
 
         #navigator a{
@@ -193,7 +208,7 @@
 
         /* footer2 */
         #footer_2 img{
-            /* border: 1px solid green; */
+            border: 1px solid green;
             height: 100%;
         }
 
@@ -207,7 +222,7 @@
 
         #site>li{
             float: right;
-            /* border: 3px solid yellow; */
+            border: 3px solid yellow;
             /* width: 15%; */
             height: 100%;
             text-align: center;
@@ -217,7 +232,7 @@
         /* footer4 */
         #footer_4>p{
             width: 100%;
-            /* border: 1px solid blue; */
+            border: 1px solid blue;
             box-sizing: border-box;
             margin: 0;
             font-size: 12px;
@@ -235,7 +250,7 @@
         }
         
         #line_navi{
-            /* border: 2px solid darkorchid; */
+            border: 2px solid darkorchid;
             width: 90%;
             height: 8%;
             
@@ -246,7 +261,7 @@
         }
         
         #content{
-            /* border: 2px solid gray; */
+            border: 2px solid gray;
             width: 90%;
             height: 85%;
             box-sizing: border-box;
@@ -373,57 +388,44 @@
                         <b>여기닉네임</b>
                     </div>
                     
-                    <div id="usermenu" onclick="햄버거눌루">
-                        <!-- Button to Open the Modal -->
-                        <img src="../resources/hamburger_btn.png" data-toggle="modal" data-target="#myModal">
-                    </div>
+                    
+                    <!-- 메뉴바 햄버거 -->
+                    <button id="usermenu" onclick="openUserMenu()"><img src="../resources/hamburger_btn.png"></button>
+                    
+                        <div id="usermenu_page">
+                            <table border="1" align="center">
+                                
+                                <h3 align="center">로그인</h3>
 
-                    <div class="container">
-                        
-                        <!-- The Modal -->
-                        <div class="modal fade" id="myModal">
-                            <div class="modal-dialog">
-                            <div class="modal-content">
-                            
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                <h4 class="modal-title">로그인</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
+                                <tr>
+                                    <th><input type="text"></th>
+                                </tr>
+                                <tr>
+                                    <th><input type="password"></th>
+                                </tr>
+                                <tr>
+                                    <th><input type="submit" value="로그인"></th>
+                                </tr>
+                                <tr>
+                                    <th>ID 찾기 | 비밀번호 찾기 | 회원가입</th>
+                                </tr>
                                 
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                
-                                <form action="#">
-                                    <div class="form-group">
-                                      <label for="id">아이디:</label>
-                                      <input type="id" class="form-control" placeholder="아이디" id="id">
-                                    </div>
-                                    <div class="form-group">
-                                      <label for="pwd">비밀번호:</label>
-                                      <input type="password" class="form-control" placeholder="비밀번호" id="pwd">
-                                    </div>
-                                    
-                                    <button type="submit" class="btn btn-primary">로그인</button>
-                                </form>
-
-                                <div id="user_accout" style="margin-top: 5px;"></div>
-                                    <a href="#" style="font-size: 12px; color: black">ID 찾기</a>
-                                    <a href="#" style="font-size: 12px; color: black;"> | 비밀번호 찾기</a>
-                                    <a href="#" style="font-size: 12px; color: black;"> | 회원가입</a>
-                                </div>
-                                
-                                
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                                
-                            </div>
-                            </div>
+                            </table>
                         </div>
-                        
-                    </div>
+                    
+                    
+                    <script>
+                        function openUserMenu(){
+
+                            if(document.getElementById('usermenu_page').style.display==='block'){
+                                document.getElementById('usermenu_page').style.display='none';
+                            }else{
+                                document.getElementById('usermenu_page').style.display='block';
+                            }
+                            
+                        }
+                    </script>
+                    
 
                 </div>
 
@@ -431,7 +433,7 @@
             
         </div>
         <div id="navigator">
-            <!-- 메뉴바 -->
+            <!-- navi -->
             <ul class="nav nav-pills justify-content-center ">
                 <li class="nav-item">
                     <a class="btn btn-light" href="#">홈</a>
