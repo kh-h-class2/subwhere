@@ -33,6 +33,7 @@
             margin: auto;
             width: 1000px;
             height: 1200px;
+            
         }
 
         #info{
@@ -40,6 +41,35 @@
             font-weight: 700;
             font-size: 13px;
             
+        }
+        .table-responsive {
+            margin-top: 20px;
+        }
+        
+        .table th, .table td {
+            vertical-align: middle;
+        }
+
+
+        input.form-control {
+            border: none;
+        }
+
+       
+        input.form-control::placeholder {
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+        }
+
+       
+        table.table {
+            border: none;
+        }
+
+        
+        table.table tbody tr td {
+            border-top: none;
         }
 
         /* ---------------content_h----------------- */
@@ -49,6 +79,7 @@
             color: gray;
             font-size: 25px;
             font-weight: bold;
+            margin-left: 50px;
         }
 
         /* ---------------content_b----------------- */
@@ -57,7 +88,7 @@
         }
 
         #content_b #writeTitle {
-            width: 900px;
+            width: 950px;
             height: 30px;
             border: 1px solid lightgray;
         }
@@ -96,34 +127,36 @@
                     
                     <script>
                     $('.summernote').summernote({
-                        width:900,
+                        width: 950,
                         height: 300, 
                         lang: "ko-KR"
                     });
                     </script>
         
-                    <table width="500">
-                        <tr>
-                            <th id="info">이용시간</th>
-                            <td> <input type="text" name="time" ></td>
-                        </tr>
-                        <tr>
-                            <th id="info">휴무일</th>
-                            <td> <input type="text" name="holiday"></td>
-                        </tr>
-                        <tr>
-                            <th id="info">운영 요일</th>
-                            <td> <input type="text" name="workday"></td>
-                        </tr>
-                        <tr>
-                            <th id="info">주소</th>
-                            <td> <input type="text" name="address"></td>
-                        </tr>
-                    </table>
-
-                    
-                </form>
-            </div>
+        <div   style="border: none;">
+            <table class="table table-borderless"  style="border: none;">
+                <tbody>
+                    <tr>
+                        
+                        <td><input type="text" class="form-control" name="time" placeholder="시간" style="border: none;"></td>
+                    </tr>
+                    <tr>
+                        
+                        <td><input type="text" class="form-control" name="holiday" placeholder="휴무일" style="border: none;"></td>
+                    </tr>
+                    <tr>
+                        
+                        <td><input type="text" class="form-control" name="address" placeholder="주소" style="border: none;"></td>
+                    </tr>
+                    <tr>
+                        
+                        <td><input type="text" class="form-control" name="transportation" placeholder="교통 정보" style="border: none;"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
     
             <!------------------------------content_f------------------------------->
             <div id="content_f" align="right">
