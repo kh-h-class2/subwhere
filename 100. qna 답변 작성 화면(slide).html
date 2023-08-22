@@ -74,17 +74,36 @@
         }
 
          /*--------------- 페이징 바 부분 ------------*/
-         #pagingbar>button{
-            height: 10%;
-            box-sizing: border-box;
-            margin: 2px;
-            border: 0;
-            inline-size: 35px;
-            block-size: 40px;
-            
-           
+         #paging {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
         }
 
+        #paging button {
+            background-color: #f7f7f7; 
+            color: #555;
+            border: none;
+            padding: 8px 15px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        #paging button:hover {
+            background-color: #dcdcdc; 
+        }
+
+        #paging button:focus {
+            outline: none;
+        }
+
+        #paging button.active {
+            background-color: gray;
+            color: white;
+        }
 
 
 
@@ -414,20 +433,15 @@
 
         </div>
         
-        <div id="pagingbar" align="center">
+        <div id="paging" align="center">
 
 
             <button> &lt;</button>
-            <button>1</button>
+            <button class="active">1</button>
             <button>2</button>
             <button>3</button>
             <button>4</button>
             <button>5</button>
-            <button>6</button>
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button>10</button>
             <button> &gt; </button>
 
 
