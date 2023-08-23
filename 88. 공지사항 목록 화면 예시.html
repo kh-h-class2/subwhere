@@ -93,7 +93,7 @@
 
         table>thead>tr>th{
             padding-left: 10px;
-            border-bottom:1px solid gray;
+            border-bottom:2px solid gray;
             color:darkslategray
         }
 
@@ -251,7 +251,7 @@
             </div>
 
             <div id="btn-qna">
-                <a href="#" class="btn btn-secondary"  id="qna" > Q & A</a>
+                <a href="#" class="btn btn-secondary"  id="qna" > FAQ</a>
             </div>
 
         </div>
@@ -266,11 +266,12 @@
                 <a href="#" class="btn btn-sm btn-secondary">글 작성</a>
             </div>
 
+            
+            
 
             <table border="1" >
-
-
                 <thead>
+
                     <tr>
                         <th width="70" height="70">No.</th>
                         <th width="400">제목</th>
@@ -319,6 +320,8 @@
                         <td>2022-12-25</td>
                         <td>150</td>
                     </tr>
+                 
+
 
                     <script>
                         const allButton = document.getElementById("all");
@@ -369,7 +372,7 @@
                                  </tr>
                             `;
 
-                                 $(this).attr("href","")
+                                //  $(this).attr("href","")
                             
 
                             })
@@ -382,6 +385,9 @@
 
                             // 코드로 생성된 Q&A 목록을 삽입
                             contentTableBody.innerHTML = `
+                           
+                            
+                            
                             <tr class="question-row">
                                 <td>50</td>
                                 <td  style="font-size: 14px;" > 회원 탈퇴를 하고 싶습니다! 방법을 알려주세요 </td>
@@ -430,7 +436,7 @@
                                 <td>2022-12-20</td>
                                 <td>7</td>
                             </tr>
-                           
+                        
                             `;
 
 
