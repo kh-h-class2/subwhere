@@ -1,0 +1,33 @@
+var kaomojis = document.querySelectorAll('.kaomoji');
+
+if (0 < kaomojis.length)
+{
+    var clipboard = new Clipboard('.kaomoji');
+
+    clipboard.on('success', function(e) {
+        //console.log(e);
+        showKaomojiTooltip(e.trigger, " 복사됨");
+    });
+    clipboard.on('error', function(e) {
+        //console.log(e);
+        clearKaomojiTooltip(e.trigger, "에러");
+    });
+
+    for (var i = 0; i < kaomojis.length; i++)
+    {
+        kaomojis[i].addEventListener('mouseleave', clearKaomojiTooltip);
+        kaomojis[i].addEventListener('blur', clearKaomojiTooltip);
+    }
+}
+
+function showKaomojiTooltip(elem, msg) 
+{
+    elem.setAttribute('class', 'kaomoji tooltipped tooltipped-s');
+    elem.setAttribute('aria-label', msg);
+}
+
+function clearKaomojiTooltip(e)
+{
+    e.currentTarget.setAttribute('class', 'kaomoji');
+    e.currentTarget.removeAttribute('aria-label');
+}
