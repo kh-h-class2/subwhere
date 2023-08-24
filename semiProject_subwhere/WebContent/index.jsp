@@ -15,15 +15,7 @@
 
     <!-- 스마트에디터 -->
 <script type="text/javascript" src="resources/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-    <script type="text/javascript">
-var oEditors = [];
-nhn.husky.EZCreator.createInIFrame({
- oAppRef: oEditors,
- elPlaceHolder: "ir1",
- sSkinURI: "resources/smarteditor/SmartEditor2Skin.html",
- fCreator: "createSEditor2"
-});
-</script>
+
     
     <!-- 부트스트랩 -->
     <link
@@ -94,7 +86,7 @@ nhn.husky.EZCreator.createInIFrame({
         }
 
         #content_b #writeTitle {
-            width: 950px;
+            width: 1127px;
             height: 30px;
             border: 1px solid lightgray;
         }
@@ -129,7 +121,17 @@ nhn.husky.EZCreator.createInIFrame({
                     <input type="text" id="writeTitle" placeholder="제목을 입력해주세요." required>
                     <!-- 스마트에디터 -->
                     <div id="smarteditor">
-                   <textarea name="editorTxt" id="editorTxt" rows="20" cols="10" placeholder="내용을 입력해주세요." style=width:500px></textarea>
+                   <textarea name="ir1" id="ir1" rows="10" cols="150">에디터에 기본으로 삽입할 글(수정 모드)이 없다면 이 value 값을 지정하지 않으시면 됩니다.</textarea>
+                       <script type="text/javascript">
+						var oEditors = [];
+						nhn.husky.EZCreator.createInIFrame({
+						 oAppRef: oEditors,
+						 elPlaceHolder: "ir1",
+						 sSkinURI: "resources/smarteditor/SmartEditor2Skin.html",
+						 fCreator: "createSEditor2"
+						});
+						</script>
+                   
                    </div>
         
         <div   style="border: none;">
