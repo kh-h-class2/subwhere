@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,10 +11,10 @@
         /* wrap은 가져가지 않을 거임  */
         .wrap{ 
             /* border: 5px solid black;  */
-            width: 1000px;
+            width: 1200px;
             height: 750px ;
             margin: auto;
-            margin-top: 60px;
+            margin-top: 30px;
 
         }
 
@@ -327,6 +329,9 @@
 </head>
 <body>
     
+   <%@ include file="views/common/header.jsp" %>
+
+    
     <div class="wrap">
 
         <div id="menu-body">
@@ -517,8 +522,13 @@
         <button> &gt; </button>
     </div>
 
-  
+  <br><br>
     
-
+<%@ include file="views/common/footer.jsp" %>
 </body>
 </html>
+
+
+
+
+

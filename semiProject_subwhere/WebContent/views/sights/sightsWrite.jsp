@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,14 +13,10 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- summernote 부트스트랩 -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> 
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-    <script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
-
+    <!-- 스마트에디터 -->
+<script type="text/javascript" src="resources/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+    
+    
     <!-- 부트스트랩 -->
     <link
       rel="stylesheet"
@@ -31,8 +29,8 @@
 
         .all {
             margin: auto;
-            width: 1000px;
-            height: 1200px;
+            width: 1200px;
+            height: 1400px;
             
         }
 
@@ -106,6 +104,7 @@
 
 </head>
 <body>
+<%@ include file="views/common/header.jsp" %>
     <div class="all">
         <form action="">
 
@@ -117,21 +116,13 @@
     
             <!------------------------------content_b------------------------------->
             <div id="content_b">
-                <form action="">
+                
     
                     <input type="text" id="writeTitle" placeholder="제목을 입력해주세요." required>
-                    
-                    <!-- summernote 부트스트랩 -->
-                    <textarea class="summernote" id="summernote" name="editordata" style="resize: none;"> 
-                    </textarea>    
-                    
-                    <script>
-                    $('.summernote').summernote({
-                        width: 950,
-                        height: 300, 
-                        lang: "ko-KR"
-                    });
-                    </script>
+                    <!-- 스마트에디터 -->
+                    <div id="smarteditor">
+                   <textarea name="editorTxt" id="editorTxt" rows="20" cols="10" placeholder="내용을 입력해주세요." style=width:500px></textarea>
+                   </div>
         
         <div   style="border: none;">
             <table class="table table-borderless"  style="border: none;">
@@ -155,7 +146,7 @@
                 </tbody>
             </table>
         </div>
-    </form>
+   
 </div>
     
             <!------------------------------content_f------------------------------->
@@ -172,7 +163,7 @@
 
 
 
-
+<%@ include file="views/common/footer.jsp" %>
 
 
 </body>

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +26,7 @@
 
         .all {
             margin: auto;
-            width: 1000px;
+            width: 1200px;
             height: 1600px;
         }
         
@@ -112,7 +114,7 @@
         
           .swiper-button-next, .swiper-button-prev {
             position: absolute;
-            top: 50%;
+            top: 80%;
             transform: translateY(-50%);
         }
         
@@ -122,8 +124,8 @@
             height: 30px;
             font-size: 20px;
             line-height: 1;
-            color: white;
-            background-color: rgba(0, 0, 0, 0.5);
+            color: rgba(0, 0, 0, 0.5);
+            /*background-color: rgba(0, 0, 0, 0.5);*/
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -132,11 +134,11 @@
         }
         
         .swiper-button-prev {
-            left: 10px;
+            left: 400px;
         }
         
         .swiper-button-next {
-            right: 10px;
+            right: 400px;
         }
 
         .swiper-slide img { /* 슬라이드 이미지 크기 자유롭게 변경하시면 됩니다 */
@@ -149,12 +151,13 @@
 </head>
 
 <body>
+<%@ include file="views/common/header.jsp" %>
 
     <div class="all">
         <form action="">
             <!------------------------------content_h------------------------------->
             <div id="content_h">
-                <p>여행지 추천</p>
+                <p></p>
             </div>
 
             <!------------------------------content_b------------------------------->
@@ -264,7 +267,7 @@
                         prevEl: '.swiper-button-prev',
                     },
                     slidesPerView: 1,  
-                    spaceBetween: 10, 
+                    spaceBetween: 10000, 
                 });
             </script>
 
@@ -324,7 +327,8 @@
 
     </div>
 
-    
+    <br><br>
+    <%@ include file="views/common/footer.jsp" %>
 
 
 </body>
