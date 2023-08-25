@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key = "selectList">
+SELECT *
+FROM(
+SELECT ROWNUM RNUM, A.*
+FROM(
+    SELECT
+     BOARD_NO
+    ,STATION_NO
+    ,COUNT
+    ,TITLE
+    ,CONTENT
+    ,MODIFY_DATE
+    ,DTN_NAME
+    ,D.STATUS
+    ,FILE_PATH||'/'||CHANGE_NAME "TITLE_IMAGE"
+    ,FILE_LEVEL
+FROM DESTINATION D
+JOIN UPLOADFILE ON (BOARD_NO = REFD_BNO)
+WHERE D.STATUS = 'Y'
+AND FILE_LEVEL = 1
+ORDER BY BOARD_NO DESC
+)A
+)
+WHERE RNUM BETWEEN ? AND ?
+
+</entry>
+<entry key = "selectListCount">
+SELECT
+    COUNT(*) count
+    FROM DESTINATION
+WHERE STATUS = 'Y'
+</entry>
+
+
+</properties>

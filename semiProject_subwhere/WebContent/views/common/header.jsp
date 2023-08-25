@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+	String contextPath = request.getContextPath();%>
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -225,7 +228,7 @@
         
         <div id="header_1">
             <!-- 로고 -->
-            <a href="#"><img src="resources/images/logo_blue_subwhere.png" alt="logo"></a>
+            <a href="<%=contextPath%>"><img src="resources/images/logo_blue_subwhere.png" alt="logo"></a>
         </div>
 
         <div id="header_2">
@@ -374,10 +377,10 @@
         <!-- navi -->
         <ul class="nav nav-pills justify-content-center ">
             <li class="nav-item">
-                <a class="btn btn-light" href="#">홈</a>
+                <a class="btn btn-light" href="<%=contextPath%>">홈</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-primary" href="#">여행지 추천</a>
+                <a class="btn btn-primary" href="<%=contextPath%>/list.si?cpage=1">여행지 추천</a>
             </li>
             <li class="nav-item">
                 <a class="btn btn-primary" href="#">여행 코스 추천</a>

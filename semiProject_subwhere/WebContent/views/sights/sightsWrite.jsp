@@ -13,8 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- 스마트에디터 -->
-<script type="text/javascript" src="resources/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+   
 
     
     <!-- 부트스트랩 -->
@@ -87,10 +86,12 @@
 
         #content_b #writeTitle {
             width: 1127px;
-            height: 30px;
+            height: 40px;
             border: 1px solid lightgray;
         }
-
+		#content_b #ir1{
+			border: 1px solid lightgray;
+		}
         
         /* ---------------content_b----------------- */
         #content_f {
@@ -115,13 +116,13 @@
                 cursor: pointer;
                 }
 </style>
-    </style>
+   
 
 </head>
 <body>
-<%@ include file="views/common/header.jsp" %>
+<%@ include file="../common/header.jsp" %>
     <div class="all">
-        <form action="">
+        <form action="<%=contextPath%>/insert.si" id="sight_enroll_form" method="post" enctype="multipart/form-data">
 
             <!------------------------------content_h------------------------------->
             <br><br>
@@ -131,22 +132,13 @@
     
             <!------------------------------content_b------------------------------->
             <div id="content_b">
-                
+                <input type="hidden" name = "userNo" value="1"> <!-- 나중에 value 동적으로 받아주기 -->
     
                     <input type="text" id="writeTitle" placeholder="제목을 입력해주세요." required>
-                    <!-- 스마트에디터 -->
-                    <div id="smarteditor">
-                   <textarea name="ir1" id="ir1" rows="20" cols="150" style="resize: none;"></textarea>
-                       <script type="text/javascript">
-						var oEditors = [];
-						nhn.husky.EZCreator.createInIFrame({
-						 oAppRef: oEditors,
-						 elPlaceHolder: "ir1",
-						 sSkinURI: "resources/smarteditor/SmartEditor2Skin.html",
-						 fCreator: "createSEditor2"
-						});
-						</script>
-                   
+                    
+                    <div id="txtarea">
+                   <textarea name="ir1" id="ir1" rows="20" cols="150" style="resize: none;" placeholder="내용을 입력해주세요." required></textarea>
+                     
                    </div>
                    <div>
                     <label class="input-file-button" for="imageInput">사진 업로드</label>
@@ -157,7 +149,7 @@
                    <script>
 					    document.getElementById("imageInput").addEventListener("change", function(event) {
 					        const imagePreviewDiv = document.getElementById("imagePreview");
-					        imagePreviewDiv.innerHTML = ""; // Clear previous previews
+					        imagePreviewDiv.innerHTML = ""; 
 					        
 					        const files = event.target.files;
 					        
@@ -197,8 +189,8 @@
     
             <!------------------------------content_f------------------------------->
             <div id="content_f" align="right">
-                <button type="reset" id="writeBtn" class="btn btn-secondary">초기화</button>
-                <button type="button" id="writeBtn" class="btn btn-secondary">뒤로가기</button>
+                <button type="reset"  class="btn btn-secondary">초기화</button>
+                <button type="button" class="btn btn-secondary">뒤로가기</button>
                 <button type="submit" id="writeBtn" class="btn btn-secondary">작성하기</button>
             </div>
 
@@ -209,7 +201,7 @@
 
 
 
-<%@ include file="views/common/footer.jsp" %>
+<%@ include file="../common/footer.jsp" %>
 
 
 </body>

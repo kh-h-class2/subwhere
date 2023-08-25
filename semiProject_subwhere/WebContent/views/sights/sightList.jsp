@@ -1,5 +1,17 @@
+<%@page import="com.kh.board.model.vo.Sight"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kh.common.model.vo.PageInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%
+    PageInfo pi = (PageInfo)request.getAttribute("pi");
+    ArrayList<Sight> list = (ArrayList<Sight>)request.getAttribute("list");
+    int currentPage = pi.getCurrentPage();
+    int startPage = pi.getStartPage();
+    int endPage = pi.getEndPage();
+    int maxPage = pi.getMaxPage();
+    %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -329,7 +341,7 @@
 </head>
 <body>
     
-   <%@ include file="views/common/header.jsp" %>
+   <%@ include file="../common/header.jsp" %>
 
     
     <div class="wrap">
@@ -403,23 +415,29 @@
   
 
         <table>
+        
+         <%if(list.isEmpty()){ %>
+        <!-- 게시글이 없을 경우 -->
+        
+        
             <tr>
                 <th style="width: 30%; height: 20%;">
-                  <img src="resources/images/naksan.webp" class="img">
                 </th>
                 
                 <td>
                     <div class="h3-class">
-                        <h3> <b> 낙산공원</b> </h3>
+                        <h3> <b> 게시글이 없습니다.</b> </h3>
                     </div>
                     
                     <div class="p-class">
-                        <p > 종로구에 위치한 낙산공원은 성곽을 따라 걸으며 산책도 하고 서울의 야경도 즐길 수 있는 일석이조의 야경 조망 명소. </p>
+                       
                     </div>
                 </td>
 
             </tr>
-
+		<%}else{ %>
+		<!-- 게시글이 있을 경우 -->
+		<%for(Sight s : list){ %>
             <tr>
                 <th style="width: 30%; height:20%;">
                     <img src="resources/images/namsan.webp" class="img">
@@ -436,55 +454,7 @@
 
                 </td>
             </tr>
-
-            <tr>
-                <th style="width: 30%; height: 20%;">
-                    <img src="resources/images/gwangjang.webp" class="img">
-                </th>
-
-                <td>
-                    <div class="h3-class">
-                        <h3> <b> 광장시장</b> </h3>
-                    </div>
-                    
-                    <div class="p-class">
-                        <p > 100년 동안 서울 중심에 자리한 광장시장은 서울에서 가장 활기있는 전통시장 중 하나입니다 </p>
-                    </div>
-
-                </td>
-            </tr>
-
-            <tr>
-                <th style="width: 30%; height: 20%;">
-                    <img src="resources/images/banpo.webp" class="img">
-                </th>
-                
-                <td>
-                    <div class="h3-class">
-                        <h3> <b> 반포대교</b> </h3>
-                    </div>
-                    
-                    <div class="p-class">
-                        <p > 달빛 무지개 분수가 선사하는 낭만적인 야경 </p>
-                    </div>
-                </td>
-            </tr>
-
-            <tr>
-                <th style="width: 30%; height: 20%;">
-                    <img src="resources/images/빛초록축제.png" class="img">
-                </th>
-
-                <td>
-                    <div class="h3-class">
-                        <h3> <b> 서울빛초롱축제</b> </h3>
-                    </div>
-                    
-                    <div class="p-class">
-                        <p>  빛 조형물 전시와 다양한 체험 프로그램 등 화려한 볼거리를 제공합니다  </p>
-                    </div>
-                </td>
-            </tr>
+            <% }} %>
 
 
         </table>
@@ -500,7 +470,7 @@
         
         <div id="down-body" >
             <br><br>
-            <a href="#" class="btn btn-sm btn-secondary" style="block-size: 40px; inline-size: 70px; line-height: 30px;">글작성</a>
+            <a href="<%=contextPath %>/write.si" class="btn btn-sm btn-secondary" style="block-size: 40px; inline-size: 70px; line-height: 30px;">글작성</a>
             <!-- 글 작성은 회원과 관리자일때만 보이게 하기! (자바에서)-->
 
         </div>
@@ -524,7 +494,7 @@
 
   <br><br>
     
-<%@ include file="views/common/footer.jsp" %>
+<%@ include file="../common/footer.jsp" %>
 </body>
 </html>
 
