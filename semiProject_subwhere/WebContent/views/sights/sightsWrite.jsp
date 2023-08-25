@@ -15,7 +15,7 @@
 
     <!-- 스마트에디터 -->
 <script type="text/javascript" src="resources/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-    
+
     
     <!-- 부트스트랩 -->
     <link
@@ -86,7 +86,7 @@
         }
 
         #content_b #writeTitle {
-            width: 950px;
+            width: 1127px;
             height: 30px;
             border: 1px solid lightgray;
         }
@@ -99,7 +99,22 @@
             padding-top: 12px;
         }
 
-        
+        /*--미리보기--*/
+		    .uploaded-image {
+		        max-width: 100px;
+		        max-height: 100px;
+		        margin: 5px;
+		        border: 1px solid #ccc;
+		    }
+
+            .input-file-button{
+                padding: 6px 25px;
+                background-color:#007fff ;
+                border-radius: 4px;
+                color: white;
+                cursor: pointer;
+                }
+</style>
     </style>
 
 </head>
@@ -121,8 +136,39 @@
                     <input type="text" id="writeTitle" placeholder="제목을 입력해주세요." required>
                     <!-- 스마트에디터 -->
                     <div id="smarteditor">
-                   <textarea name="editorTxt" id="editorTxt" rows="20" cols="10" placeholder="내용을 입력해주세요." style=width:500px></textarea>
+                   <textarea name="ir1" id="ir1" rows="20" cols="150" style="resize: none;"></textarea>
+                       <script type="text/javascript">
+						var oEditors = [];
+						nhn.husky.EZCreator.createInIFrame({
+						 oAppRef: oEditors,
+						 elPlaceHolder: "ir1",
+						 sSkinURI: "resources/smarteditor/SmartEditor2Skin.html",
+						 fCreator: "createSEditor2"
+						});
+						</script>
+                   
                    </div>
+                   <div>
+                    <label class="input-file-button" for="imageInput">사진 업로드</label>
+                   	<input type="file" id="imageInput" name="images[]" multiple accept="image/*" style="display: none;">
+                   </div>
+                   <div id="imagePreview"></div>
+                   
+                   <script>
+					    document.getElementById("imageInput").addEventListener("change", function(event) {
+					        const imagePreviewDiv = document.getElementById("imagePreview");
+					        imagePreviewDiv.innerHTML = ""; // Clear previous previews
+					        
+					        const files = event.target.files;
+					        
+					        for (let i = 0; i < files.length; i++) {
+					            const img = document.createElement("img");
+					            img.src = URL.createObjectURL(files[i]);
+					            img.className = "uploaded-image";
+					            imagePreviewDiv.appendChild(img);
+					        }
+					    });
+					</script>
         
         <div   style="border: none;">
             <table class="table table-borderless"  style="border: none;">
