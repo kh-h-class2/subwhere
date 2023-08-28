@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+    <style>
+
+        .warp{
+            border: 1px solid black;
+            box-sizing: border-box;
+            width: 670px;
+            height: 764.4px;
+            margin: auto;q
+            margin-top: 5%;
+        }
+
+        .list_title{
+            /* border: 1px solid blue; */
+            box-sizing: border-box;
+            height: 11%;
+        }
+        .list_title>h1{
+            margin-left:7%;
+            margin-top: 5%;
+        }
+
+        .list_box{
+            /* border: 1px solid red; */
+            box-sizing: border-box;
+            height: 89%;
+        }
+
+        .btn_box{
+            /* border: 1px solid green; */
+            box-sizing: border-box;
+            height: 8%;
+        }
+
+        .writer_list{
+            /* border: 1px solid gold; */
+            box-sizing: border-box;
+            height: 87%;
+        }
+
+        .review_box>table{
+            /* border: 1px solid skyblue; */
+            box-sizing: border-box;
+            /* height: 80%; */
+            /* border-collapse:collapse; */
+            border-collapse:separate;
+            border-spacing: 0px 10px;
+            border-style: none;
+
+        }
+
+        .review_box{
+            /* border: 1px solid black; */
+            box-sizing: border-box;
+            height: 86%;
+        }
+       
+
+        .page_btn{
+            /* border: 1px solid blueviolet; */
+            margin-top: 1%;
+        }
+
+        .btn_box>button{
+            width: 33.5%;
+            height: 60%;
+        }
+
+        tr:hover{
+            cursor: pointer;
+            background-color: lightgray;
+        }
+
+        
+        td>p,h3{
+            margin-left: 5%;
+        }
+
+        h3{
+            margin-bottom: 1%;
+        }
+
+        p{
+            margin-top: 0;
+            margin-bottom: 1%;
+            color: gray;
+        }
+
+        #date,#review{
+            margin-left: 11%;
+        }
+        
+        #d_btn{
+            float: right;
+            margin-right: 10%;
+        }
+
+        .btn{
+            /* border: 1px solid black; */
+            box-sizing: border-box;
+            height: 4%;
+        }
+
+        
+    </style>
+
+</head>
+<body>
+    <div class="warp">
+
+        <div class="list_title">
+           <h1>ge4621님이 작성하신 댓글</h1>
+        </div>
+
+        <div class="list_box">
+
+            <div class="btn_box" align="center">
+                <button>여행 코스</button>
+                <button>후기글</button>
+            </div>
+
+            <div class="writer_list">
+
+                <div class="review_box">
+                    <table border="1" align="center">
+                        <tr>
+                            <a href="">
+                                <td width="450" height="110"> 
+                                    <h3><input type="checkbox" name="" id="check_box">&nbsp;남산</h3>
+                                    <p id="date">2023-03-11</p>
+                                    <p id="review">좋아보여요!!!</p>
+                                </td>
+                            </a>
+                           
+                        </tr>
+    
+                        <tr>
+                            <a href="">
+                                <td width="450" height="110"> 
+                                    <h3><input type="checkbox" name="" id="check_box">&nbsp;한강</h3>
+                                    <p id="date">2023-03-11</p>
+                                    <p id="review">많이 걸어야 하나요?</p>
+                                </td>
+                            </a>
+                        </tr>
+    
+                        <tr>
+                            <a href="">
+                                <td width="450" height="110"> 
+                                    <h3><input type="checkbox" name="" id="check_box">&nbsp;동대문</h3>
+                                    <p id="date">2023-03-11</p>
+                                    <p id="review">저도 똑같이 갔다왔었는데 엄청 좋았어요!!</p>
+                                </td>
+                            </a>
+                        </tr>
+    
+                        <tr>
+                            <a href="">
+                                <td width="450" height="110"> 
+                                    <h3><input type="checkbox" name="" id="check_box">&nbsp;광화문</h3>
+                                    <p id="date">2023-03-11</p>
+                                    <p id="review">이번주에 여기 갈 생각이였는데 정보 감사합니다.</p>
+                                </td>
+                            </a>
+                        </tr>
+
+                    </table>
+    
+                </div>
+
+                
+
+                <div class="btn">
+                    <button id="d_btn">삭제하기</button>
+                </div>
+
+                <div class="page_btn" align="center">
+                    <button>&lt;</button>
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>&gt;</button>
+
+                </div>
+
+               
+               
+
+            </div>
+
+
+        </div>
+
+    </div>
+</body>
+</html>

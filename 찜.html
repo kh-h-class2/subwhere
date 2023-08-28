@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script> 
+    <title>찜 보관함</title>
+    <style>
+        /*전체 박스*/
+        .warp{ 
+            border: 1px solid black;
+            box-sizing: border-box;
+            width: 670px;
+            height: 764.4px;
+            margin: auto;
+            margin-top: 5%;
+        }
+
+        /*제목 박스*/
+        .title{
+            /* border: 1px solid red; */
+            box-sizing: border-box;
+            width: 100%;
+            height: 11%;
+            padding:3%;
+            margin-left: 5%;
+        }
+
+        /*게시물 들어가는 큰 박스*/
+        .outer{
+            /* border: 1px solid blue; */
+            box-sizing: border-box;
+            width: 100%;
+            height: 89%;
+            
+        }
+        /*사진 나중에 픽셀로 고정 해야 크기 변동 없다.*/
+        img{
+            width: 100%;
+            height: 150px;
+            border-radius: 5% 5% 0% 0%;
+        }
+
+        /*ul을 감싸고 있는 div*/
+        .list-area{
+            /* border: 1px solid green; */
+            box-sizing: border-box;
+            width: 100%;
+            height: 90%;
+        }
+
+        li{
+            box-sizing: border-box;
+            list-style-type: none;
+            position: relative;
+            width: 100%;
+        }
+
+        /*게시물 하나하나의 div*/
+        .pic{
+            border: 1px solid black;
+            box-sizing: border-box;
+            width: 100%;
+            border-radius: 5%; 
+            cursor: pointer;
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+            text-align: center;
+        }
+
+        li:hover{
+            background-color: lightgray;
+            border-radius: 5%;
+        }
+       
+        /*li 감싸고 있는 div*/
+        #area{
+            /* border: 1px solid black; */
+            box-sizing: border-box;
+            width: 25%;
+            display: inline-block;
+            margin-left: 5%;
+            margin-top: 5%;
+        }
+       
+        /* .pic #pic{
+            position: relative;
+            z-index: 1;
+        } */
+
+        .pic #heart{
+            position: absolute;
+            z-index: 2;
+        }
+
+        .pic #heart2{
+            position: absolute;
+            z-index: 2;
+        }
+
+        #heart{
+            width: 13%;
+            height: 10%;
+            margin-top: 78%;
+            right: 5%;
+        }
+
+        #heart2{
+            width: 13%;
+            height: 10%;
+            margin-top: 78%;
+            right: 5%;
+        }
+
+       #font{
+        font-size: small;
+        color: gray;
+       }
+        
+       
+    
+    </style>
+</head>
+<body>
+    <div class="warp" >
+        <div class="title">
+           <h1> ge4621님의 찜 보관함</h1>
+        </div>
+
+        <div class="outer">
+
+            
+            <ul class="list-area">
+                <div id="area">
+                    <li>
+                        <div class="pic">
+                            <img src="resource/fheart.png" id="heart" alt="" class="toggle-heart" onclick="likeToggle(this);">
+                            <a href="">
+                                <img src="resource/남산.jpeg" alt="" id="pic">
+
+                                <h4>남산</h4>
+                                <p id="font">설명은 한줄</p>
+                            </a>
+                            
+                        </div>
+
+                    </li>
+
+                </div>
+
+                <div id="area">
+                    <li>
+                        <div class="pic">
+                            <img src="resource/fheart.png" id="heart" alt="" class="toggle-heart" onclick="likeToggle(this);">
+                            <a href="">
+                                <img src="resource/롯데타워 가로.jpeg" alt="">
+                                <h4>남산</h4>
+                                <p id="font">우리나라 최고층 ...</p>
+                            </a>
+                            
+                        </div>
+                    </li>
+                </div>
+                
+                <div id="area">
+                    <li>
+                        <div class="pic">
+                            <img src="resource/fheart.png" id="heart" alt="" class="toggle-heart" onclick="likeToggle(this);">
+                            <a href="">
+                                <img src="resource/한강.jpeg" alt="">
+                                <h4>남산</h4>
+                                <p id="font">한강에서 ........</p>
+                            </a>
+                            
+                        </div>
+                    </li>
+                </div>
+
+                <div id="area">
+                    <li>
+                        <div class="pic">
+                            <img src="resource/fheart.png" id="heart" alt="" class="toggle-heart" onclick="likeToggle(this);">
+                            <a href="">
+                                <img src="resource/한강.jpeg" alt="">
+                                <h4>남산</h4>
+                                <p id="font">남산타워는명.........</p>
+                            </a>
+                            
+                        </div>
+                    </li>
+                </div>
+
+
+
+            </ul>
+
+            <script>
+                // var h = 1;
+                // function likeToggle(){
+                //     var like = document.getElementById("heart")
+        
+                //     if(h % 2 ==0){
+                //         like.src="resource/fheart.png";
+                    
+                //     }else{
+                //         like.src="resource/heart.png";
+                //     }
+        
+                //     h++;
+                // }
+
+
+                function likeToggle(heartImage) {
+                    if (heartImage.src.includes("fheart.png")) {
+                        heartImage.src = "resource/heart.png";
+                    } else {
+                        heartImage.src = "resource/fheart.png";
+                    }
+                }
+
+            </script>
+
+
+            <div id="btn-area" align="center">
+                <button>&lt;</button>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>4</button>
+                <button>&gt;</button>
+            </div>
+            
+        </div>
+    </div>
+
+
+    
+
+
+
+
+
+    
+</body>
+</html>
