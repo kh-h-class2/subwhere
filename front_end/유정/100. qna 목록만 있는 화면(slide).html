@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항 초안</title>
+
+     <!-- w3schools 부트스트랩 -->
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+ <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+ <!-- 부트스트랩 -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    
+    <style>
+        .wrap{
+            width: 1000px;
+            height: 800px;
+            /* border: 1px solid red; */
+            margin: auto;
+            margin-top: 50px;
+        }
+
+        .wrap>div{
+            width: 100%;
+            box-sizing: border-box;
+            /* border: 1px solid blue; */
+        }
+
+
+        
+       
+
+
+        /* ------------------내용부분---------------- */
+        #content-area{
+            height: 60%;
+            box-sizing: border-box;
+        }
+
+
+        #content-area>table{
+            width: 90%;
+            height: 100%;
+            box-sizing: border-box;
+            margin-left: 50px;
+            border-top: 1px solid white;
+            border-left: 1px solid white;
+            border-right: 1px solid white;
+            /* border-bottom:1px solid lightgrey; */
+        }
+
+        table>thead>tr>th{
+            padding-left: 10px;
+            border-bottom:1px solid gray;
+            color:darkslategray
+        }
+
+
+         table>tbody>tr>td{
+            padding-left: 10px;
+            border-bottom:1px solid lightgrey;
+            color: gray;
+            
+        }
+
+         /*--------------- 페이징 바 부분 ------------*/
+         #paging {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        #paging button {
+            background-color: #f7f7f7; 
+            color: #555;
+            border: none;
+            padding: 8px 15px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        #paging button:hover {
+            background-color: #dcdcdc; 
+        }
+
+        #paging button:focus {
+            outline: none;
+        }
+
+        #paging button.active {
+            background-color: gray;
+            color: white;
+        }
+
+
+
+
+
+        /* --------------하단 검색/select박스---------- */
+        #menubar-area{
+            height: 10%;
+            box-sizing: border-box;
+        }
+
+        #menubar-area>form{
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        form>div{
+            height: 100%;
+            
+            box-sizing: border-box;
+            /* border: 1px solid orange; */
+            float: left;
+        }
+
+        form>#selectbox{
+            width: 40%;
+        }
+
+        form>#search{
+            width: 60%;
+            /* border: 1px solid blueviolet; */
+        }
+
+
+        /* selectbox 부분  */
+        select{
+            
+            margin-left: 230px;
+            margin-top: 173px;
+            width: 150px;
+            height: 35px;
+        }
+
+        /* 검색부분  */
+        #search>div{
+            /* border: 1px solid green; */
+            height: 50%;
+            width: 70%;
+            float: left;
+            box-sizing: border-box;
+            margin-right: 300px;
+            margin-top: 170px;
+            
+
+        }
+       
+        /* sel div */
+       #search>div>div{
+        height: 100%;
+        /* border: 1px dashed black; */
+        float: left;
+       }
+
+        #sel-1{
+            width: 80%;
+            
+        }
+
+        #sel-1>input{
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+           
+        }
+
+        #sel-2{
+            width: 20%;
+        }
+
+        #sel-2>button{
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        #sel-2 img{
+            width: 60%;
+            height: 90%;
+            background-color: #f7f7f7;
+            
+        }
+
+        /* table>tbody>tr:hover{
+            background-color: lightgrey;
+        } */
+
+        
+        .answer-row {
+        display: none;
+        background-color: #f5f5f5;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+        }
+        
+     
+        .question-row:hover {
+            cursor: pointer;
+         }
+
+         .answer-row {
+        display: none;
+        background-color: #f5f5f5;
+        }
+
+        .answer {
+        padding: 10px;
+        }
+
+        .show-answer {
+        display: table-row;
+        }
+                    
+
+
+    </style>
+
+</head>
+<body>
+    <div class="wrap">
+
+      
+
+
+
+        <div id="content-area">
+
+            <!-- 글 작성 버튼은 관리자일때만 보이기 -->
+            <div id="atag" align="right" style="width: 950px;">
+                <a href="#" class="btn btn-sm btn-secondary">글 작성</a>
+            </div>
+
+
+            <table border="1" >
+
+
+                <thead>
+                    <tr>
+                        <th width="70" height="70">No.</th>
+                        <th width="400">내용</th>
+                        <th width="200">작성자</th>
+                        <th width="200">작성일</th>
+                        <th width="70">조회수</th>
+                    </tr>
+
+                  
+                </thead>
+
+                <tbody>
+                   
+                            <tr class="question-row">
+                                <td>50</td>
+                                <td  style="font-size: 14px;" > 회원 탈퇴를 하고 싶습니다! 방법을 알려주세요 </td>
+                                <td>세상젤멋은우</td>
+                                <td>2023-05-05</td>
+                                <td>7</td>
+                            </tr>
+                            <tr class="answer-row">
+                                <td></td>
+                                <td  style="font-size: 12px;" > 알아서 찾아보세요^^ </td>
+                                <td>관리자</td>
+                                <td>2023-05-05</td>
+                                <td>5</td>
+                            </tr>
+                           
+
+                            <tr class="question-row">
+                                <td>49</td>
+                                <td  style="font-size: 14px;">여행코스 추천글은 어떻게 작성하나요? </td>
+                                <td>뚜벅이의 여행</td>
+                                <td>2023-04-25</td>
+                                <td>6</td>
+                            </tr>
+                            <tr class="answer-row">
+                                <td></td>
+                                <td   style="font-size: 12px;" >여행코스 목록에서 작성하기를 클릭하면 됩니다. </td>
+                                <td>관리자</td>
+                                <td>2023-04-26</td>
+                                <td>6</td>
+                            </tr>
+                            
+
+
+                            <tr class="question-row">
+                                <td>48</td>
+                                <td  style="font-size: 14px;">회원정보 변경하고 싶어요 관리자님이 직접 변경해주세요</td>
+                                <td>귀차니즘..</td>
+                                <td>2023-03-17</td>
+                                <td>4</td>
+                            </tr>
+                            <tr class="answer-row">
+                                <td></td>
+                                <td  style="font-size: 12px;"  >귀찮아요^^</td>
+                                <td>관리자</td>
+                                <td>2023-03-17</td>
+                                <td>4</td>
+                            </tr>
+                           
+
+
+                            <tr class="question-row">
+                                <td>47</td>
+                                <td  style="font-size: 14px;" >관리자님은 몇 살이세요?</td>
+                                <td>호기심 대마왕</td>
+                                <td>2022-12-25</td>
+                                <td>6</td>
+                            </tr>
+                            <tr class="answer-row">
+                                <td></td>
+                                <td   style="font-size: 12px;" >아직 안 태어났어요^^</td>
+                                <td>관리자</td>
+                                <td>2022-12-27</td>
+                                <td>6</td>
+                            </tr>
+
+
+                            <tr class="question-row">
+                                <td>46</td>
+                                <td  style="font-size: 14px;" >지하철 말고 기차 여행도 해주세요</td>
+                                <td>호빵이의 일상여행</td>
+                                <td>2022-12-20</td>
+                                <td>7</td>
+                            </tr>
+                            <tr class="answer-row">
+                                <td></td>
+                                <td   style="font-size: 12px;"  >직접 만들어보세요^^</td>
+                                <td>관리자</td>
+                                <td>2022-12-27</td>
+                                <td>6</td>
+                            </tr>
+                            
+
+                
+
+                   
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+        <div id="menubar-area">
+
+            <form action="#" method="post">
+                <div id="selectbox">
+                    
+                    <select name="selectbox">
+                        <option value="select-all">전체</option>
+                        <option value="select-title-content">제목+내용</option>
+                        <option value="select-title">제목</option>
+                        <option value="select-content">내용</option>
+                        
+                    </select>
+
+
+                </div>
+
+                <div id="search">
+                    <div id="se1">
+                        <div id="sel-1">
+                            <input type="text" name="search" id="search-input" placeholder="검색어를 입력하세요">
+
+                        </div>
+                        
+                        <div id="sel-2">
+                            
+                            <button id="search-btn" type="submit" style="background-color: white;"> <img src="image/돋보기2.png" alt=""></button>
+                        </div>
+
+                        
+                    </div>
+
+            
+                    
+                </div>
+                
+            </form>
+            
+            
+
+            
+
+
+        </div>
+        
+        <div id="paging" align="center">
+
+
+            <button> &lt;</button>
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+            <button> &gt; </button>
+
+
+        </div>
+
+
+
+
+    </div>
+
+    <script>
+
+        const questionRows = document.querySelectorAll('.question-row');
+        const answerRows = document.querySelectorAll('.answer-row');
+        
+        questionRows.forEach((row, index) => {
+          row.addEventListener('click', () => {
+            if (answerRows[index].classList.contains('show-answer')) {
+              answerRows[index].classList.remove('show-answer');
+            } else {
+              answerRows.forEach(answerRow => answerRow.classList.remove('show-answer'));
+              answerRows[index].classList.add('show-answer');
+            }
+          });
+        });
+          </script>
+
+
+    
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

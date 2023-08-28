@@ -1,0 +1,1092 @@
+DROP TABLE REPORT; 	    ---- 신고 테이블
+DROP TABLE COMMENTS;        ---- 댓글 테이블
+DROP TABLE LIKED;           	    ---- 좋아요 테이블
+DROP TABLE REVIEW;              ---- 후기테이블
+DROP TABLE NOTICE;              ---- 공지사항 테이블
+DROP TABLE UPLOADFILE;	     ---- 첨부파일 테이블
+DROP TABLE HOT_KEYWORD;     ---- 인기검색어 테이블
+DROP TABLE DESTINATION;       ---- 여행지 추천 테이블
+DROP TABLE COURSE;	     ---- 코스 추천 게시판 테이블 
+DROP TABLE QA;                    ---- QNA테이블
+DROP TABLE STATION;             ---- 역명 테이블
+DROP TABLE MEMBER;  	     ---- 회원 테이블
+
+
+DROP SEQUENCE SEQ_REPORT_NO;		----- 신고테이블 번호 발생시킬 시퀀스
+DROP SEQUENCE SEQ_MEMBER_NO;         	-----회원번호 발생시킬 시퀀스
+DROP SEQUENCE SEQ_COURSE_NO;	     	-----코스추천게시판 번호 발생시킬 시퀀스
+DROP SEQUENCE SEQ_COMMENT_NO;	             -----댓글 번호 발생시킬 시퀀스
+DROP SEQUENCE SEQ_NOTICE;	     	-----공지사항 번호 발생시킬 시퀀스
+DROP SEQUENCE SEQ_DESTINATION_NO;    	-----여행지추천게시판 번호 발생시킬 시퀀스	
+DROP SEQUENCE SEQ_LBOARD_NO;         	----- 좋아요 시퀀스
+DROP SEQUENCE SEQ_REVIEW_NO;        	----- 여행후기 게시판 번호 발생시킬 시퀀스
+DROP SEQUENCE SEQ_QA_NO;         		----- QNA 번호 발생시킬 시퀀스
+DROP SEQUENCE SEQ_FILE_NO;		----- 첨부파일 번호 발생 시킬 시퀀스
+
+
+
+-----------------------------------------------------
+----------------------회원 테이블---------------------
+-----------------------------------------------------
+CREATE TABLE MEMBER (
+    MEMBER_NO NUMBER CONSTRAINT MEMNO_PK PRIMARY KEY,
+    MEMBER_NAME VARCHAR2(100) CONSTRAINT MEMNM_NN NOT NULL,
+    MEMBER_ID VARCHAR2(50) CONSTRAINT MEMID_NN NOT NULL UNIQUE,
+    MEMBER_PWD VARCHAR2(100) CONSTRAINT MEMPWD_NN NOT NULL,
+    PHONE VARCHAR2(50) CONSTRAINT PH_NN NOT NULL,
+    EMAIL VARCHAR2(100) CONSTRAINT EM_NN NOT NULL,
+    NICKNAME VARCHAR2(100) UNIQUE NOT NULL,
+    STATUS VARCHAR2(5) DEFAULT 'Y' CONSTRAINT ST_NN NOT NULL  CHECK(STATUS IN ('Y','W','S')),
+    ENROLL_DATE DATE DEFAULT SYSDATE CONSTRAINT DATE_NN NOT NULL,
+    PROFILE_IMG VARCHAR2(1000));
+    
+COMMENT ON COLUMN MEMBER.MEMBER_NO IS '회원번호';
+COMMENT ON COLUMN MEMBER.MEMBER_NAME IS '회원이름';
+COMMENT ON COLUMN MEMBER.MEMBER_ID IS '회원아이디';
+COMMENT ON COLUMN MEMBER.MEMBER_PWD IS '회원비밀번호';
+COMMENT ON COLUMN MEMBER.PHONE IS '회원전화번호(- 포함)';
+COMMENT ON COLUMN MEMBER.EMAIL IS '회원이메일';
+COMMENT ON COLUMN MEMBER.NICKNAME IS '회원닉네임';
+COMMENT ON COLUMN MEMBER.STATUS IS '회원활동상태(일반:Y/경고:W/정지:S)';
+COMMENT ON COLUMN MEMBER.ENROLL_DATE IS '가입날짜';
+COMMENT ON COLUMN MEMBER.PROFILE_IMG IS '프로필사진';
+
+CREATE SEQUENCE SEQ_MEMBER_NO
+START WITH 1
+INCREMENT BY 1
+MAXVALUE 99999999999
+NOCYCLE
+NOCACHE;
+
+INSERT INTO MEMBER
+( 
+     MEMBER_NO
+    ,MEMBER_NAME
+    ,MEMBER_ID
+    ,MEMBER_PWD
+    ,PHONE
+    ,EMAIL
+    ,NICKNAME
+    ,STATUS
+    ,ENROLL_DATE
+    ,PROFILE_IMG
+)
+VALUES
+(
+    SEQ_MEMBER_NO.NEXTVAL
+    ,'관리자'
+    ,'admin'
+    ,'1234'
+    ,'010-1111-1111'
+    ,'user01@google.com'
+    ,'관리자'
+    ,'Y'
+    ,SYSDATE
+    ,''
+    );
+    
+INSERT INTO MEMBER
+( 
+     MEMBER_NO
+    ,MEMBER_NAME
+    ,MEMBER_ID
+    ,MEMBER_PWD
+    ,PHONE
+    ,EMAIL
+    ,NICKNAME
+    ,STATUS
+    ,ENROLL_DATE
+    ,PROFILE_IMG
+)
+VALUES
+(
+    SEQ_MEMBER_NO.NEXTVAL
+    ,'차병원'
+    ,'user02'
+    ,'pass02'
+    ,'010-2222-2222'
+    ,'user02@google.com'
+    ,'병원장아님'
+    ,'Y'
+    ,SYSDATE
+    ,''
+    );
+INSERT INTO MEMBER
+( 
+     MEMBER_NO
+    ,MEMBER_NAME
+    ,MEMBER_ID
+    ,MEMBER_PWD
+    ,PHONE
+    ,EMAIL
+    ,NICKNAME
+    ,STATUS
+    ,ENROLL_DATE
+    ,PROFILE_IMG
+)
+VALUES
+(
+    SEQ_MEMBER_NO.NEXTVAL
+    ,'유명한'
+    ,'user03'
+    ,'pass03'
+    ,'010-3333-3333'
+    ,'user03@naver.com'
+    ,'유명한사람'
+    ,'Y'
+    ,SYSDATE
+    ,''
+    );
+
+-------------------------------------------------------------------
+------------------------------역명----------------------------------
+--------------------------------------------------------------------
+--DROP TABLE STATION;
+CREATE TABLE STATION (
+    STATION_NO NUMBER CONSTRAINT STATION_NO_PK PRIMARY KEY,
+    STATION_NAME VARCHAR2(500) CONSTRAINT STATION_NAME_NN NOT NULL,  
+    LINE NUMBER CONSTRAINT LINE_NN NOT NULL);
+    
+COMMENT ON COLUMN STATION.STATION_NO IS '역번호';
+COMMENT ON COLUMN STATION.STATION_NAME IS '역명';
+COMMENT ON COLUMN STATION.LINE IS '호선';
+
+INSERT INTO STATION
+(
+     STATION_NO
+    ,STATION_NAME
+    ,LINE
+)
+VALUES
+(
+     101
+    ,'용산역'
+    ,1
+);
+
+INSERT INTO STATION
+(
+     STATION_NO
+    ,STATION_NAME
+    ,LINE
+)
+VALUES
+(
+     201
+    ,'합정역'
+    ,2
+);
+
+INSERT INTO STATION
+(
+     STATION_NO
+    ,STATION_NAME
+    ,LINE
+)
+VALUES
+(
+     301
+    ,'신사역'
+    ,3
+);
+
+INSERT INTO STATION
+(
+     STATION_NO
+    ,STATION_NAME
+    ,LINE
+)
+VALUES
+(
+     401
+    ,'혜화역'
+    ,4
+);
+
+INSERT INTO STATION
+(
+     STATION_NO
+    ,STATION_NAME
+    ,LINE
+)
+VALUES
+(
+     501
+    ,'을지로4가'
+    ,5
+);
+
+INSERT INTO STATION
+(
+     STATION_NO
+    ,STATION_NAME
+    ,LINE
+)
+VALUES
+(
+     601
+    ,'망원역'
+    ,6
+);
+
+INSERT INTO STATION
+(
+     STATION_NO
+    ,STATION_NAME
+    ,LINE
+)
+VALUES
+(
+     701
+    ,'어린이대공원역'
+    ,7
+);
+
+INSERT INTO STATION
+(
+     STATION_NO
+    ,STATION_NAME
+    ,LINE
+)
+VALUES
+(
+     801
+    ,'잠실역'
+    ,8
+);
+
+INSERT INTO STATION
+(
+     STATION_NO
+    ,STATION_NAME
+    ,LINE
+)
+VALUES
+(
+     901
+    ,'올림픽공원역'
+    ,9
+);
+
+-----------------------------------------------------------------
+----------------------QNA----------------------------------------
+-----------------------------------------------------------------
+
+CREATE TABLE QA(
+    QA_NO NUMBER CONSTRAINT QANO_PK PRIMARY KEY,
+    QUESTION VARCHAR2(4000) CONSTRAINT Q_NN NOT NULL,
+    ANSWER VARCHAR2(4000) CONSTRAINT A_NN NOT NULL,
+    QA_DATE DATE CONSTRAINT QAD_NN NOT NULL,
+    STATUS VARCHAR2(5)DEFAULT 'Y' CONSTRAINT STATUS_NN NOT NULL CHECK(STATUS IN('Y','N'))
+    );
+
+COMMENT ON COLUMN QA.QA_NO IS 'QA번호';
+COMMENT ON COLUMN QA.QUESTION IS '질문';
+COMMENT ON COLUMN QA.ANSWER IS '답변';
+COMMENT ON COLUMN QA.QA_DATE IS '작성일';
+COMMENT ON COLUMN QA.STATUS IS '상태';
+
+CREATE SEQUENCE SEQ_QA_NO
+START WITH 1
+INCREMENT BY 1
+NOCYCLE
+NOCACHE;
+
+INSERT INTO QA
+(
+  QA_NO
+, QUESTION
+, ANSWER
+, QA_DATE
+, STATUS
+)
+VALUES
+(
+  SEQ_QA_NO.NEXTVAL
+, '회원 탈퇴를 하고 싶어요.'
+, '마이페이지 하단에 있는 회원 탈퇴를 누르시면 회원 탈퇴를 할 수 있습니다.'
+, SYSDATE
+, 'Y'
+);
+
+INSERT INTO QA
+(
+  QA_NO
+, QUESTION
+, ANSWER
+, QA_DATE
+, STATUS
+)
+VALUES
+(
+  SEQ_QA_NO.NEXTVAL
+, '찜한 게시물을 어디서 볼 수 있나요?'
+, '마이페이지에 들어가시면 찜한 목록을 볼 수 있습니다.'
+, SYSDATE
+, 'Y'
+);
+
+INSERT INTO QA
+(
+  QA_NO
+, QUESTION
+, ANSWER
+, QA_DATE
+, STATUS
+)
+VALUES
+(
+  SEQ_QA_NO.NEXTVAL
+, '찜한 게시물을 바꾸고 싶어요'
+, '찜할 때 누른 버튼을 다시 한번 누르시면 됩니다.'
+, SYSDATE
+, 'Y'
+);
+
+------------------------------------------------------------------------------
+--------------------여행지 추천------------------------------------------------
+------------------------------------------------------------------------------
+
+CREATE TABLE DESTINATION(
+    BOARD_NO VARCHAR2(100) CONSTRAINT DBOARD_NO_PK PRIMARY KEY,
+    BOARD_WRITER NUMBER CONSTRAINT D_BOARD_WRITER_NN NOT NULL,
+    STATION_NO NUMBER CONSTRAINT D_STATION_NO_NN NOT NULL,
+    TITLE VARCHAR2(200) CONSTRAINT D_TITLE_NN NOT NULL,
+    CONTENT VARCHAR2(4000) CONSTRAINT D_CONTENT_NN NOT NULL,
+    COUNT NUMBER DEFAULT 0 CONSTRAINT D_COUNT_NN NOT NULL,
+    CREATE_DATE DATE CONSTRAINT D_CREATE_DATE_NN NOT NULL,
+    MODIFY_DATE DATE CONSTRAINT D_MODIFY_DATE_NN NOT NULL,
+    DTN_NAME VARCHAR2(500) CONSTRAINT D_DTN_NAME_NN NOT NULL,
+    ADDRESS VARCHAR2(500) CONSTRAINT D_ADDRESS_NN NOT NULL,
+    TRANSPORT VARCHAR2(500) CONSTRAINT D_TRANSPORT_NN NOT NULL,
+    HOLIDAY VARCHAR2(500) CONSTRAINT D_HOLIDAY_NN NOT NULL,
+    RUNTIME VARCHAR2(500) CONSTRAINT D_RUNTIME_NN NOT NULL,
+    HASHTAG VARCHAR2(500) CONSTRAINT D_HASHTAG_NN NOT NULL,
+    STATUS VARCHAR2(5) DEFAULT 'Y' CHECK(STATUS IN ('Y', 'N')) CONSTRAINT D_STATUS_NN NOT NULL,
+    
+    FOREIGN KEY (BOARD_WRITER) REFERENCES MEMBER(MEMBER_NO),
+    FOREIGN KEY (STATION_NO) REFERENCES STATION(STATION_NO)
+);
+
+COMMENT ON COLUMN DESTINATION.BOARD_NO IS '게시글번호';
+COMMENT ON COLUMN DESTINATION.BOARD_WRITER IS '회원번호';
+COMMENT ON COLUMN DESTINATION.STATION_NO IS '역 번호';
+COMMENT ON COLUMN DESTINATION.TITLE IS '게시글 제목';
+COMMENT ON COLUMN DESTINATION.CONTENT IS '게시글 내용';
+COMMENT ON COLUMN DESTINATION.COUNT IS '조회수';
+COMMENT ON COLUMN DESTINATION.CREATE_DATE IS '게시글 작성일';
+COMMENT ON COLUMN DESTINATION.MODIFY_DATE IS '게시글 수정일';
+COMMENT ON COLUMN DESTINATION.DTN_NAME IS '여행지명';
+COMMENT ON COLUMN DESTINATION.ADDRESS IS '여행지 주소';
+COMMENT ON COLUMN DESTINATION.TRANSPORT IS '교통정보';
+COMMENT ON COLUMN DESTINATION.HOLIDAY IS '휴무일';
+COMMENT ON COLUMN DESTINATION.RUNTIME IS '이용시간';
+COMMENT ON COLUMN DESTINATION.HASHTAG IS '해쉬태그';
+COMMENT ON COLUMN DESTINATION.STATUS IS '게시글 상태';
+
+CREATE SEQUENCE SEQ_DESTINATION_NO
+START WITH 1
+INCREMENT BY 1
+NOCYCLE
+NOCACHE;
+
+CREATE OR REPLACE FUNCTION generate_custom_id RETURN VARCHAR2 IS
+    prefix VARCHAR2(10) := 'D';
+    seq_value NUMBER;
+    custom_id VARCHAR2(20);
+BEGIN
+    SELECT SEQ_DESTINATION_NO.NEXTVAL INTO seq_value FROM dual;
+    custom_id := prefix || TO_CHAR(seq_value);
+    RETURN custom_id;
+END generate_custom_id;
+/
+
+INSERT INTO DESTINATION
+     (
+        BOARD_NO
+      , BOARD_WRITER
+      , STATION_NO
+      , TITLE
+      , CONTENT
+      , COUNT
+      , CREATE_DATE
+      , MODIFY_DATE
+      , DTN_NAME
+      , ADDRESS
+      , TRANSPORT
+      , HOLIDAY
+      , RUNTIME
+      , HASHTAG
+      , STATUS
+      )
+ VALUES
+      (
+        generate_custom_id
+      , 1
+      , 601
+      , '다양한 즐거움이 있는 망원시장'
+      , '망원시장은 한강시민공원 망원지구 관할의 쾌적한 환경 여건을 구비하고 있으며 강변도로 및 도심지역으로 연결되는 교통의 관문이다. 또한 안정된 주거지역으로 생활여건 및 수준 양호한 시장 기반을 가진 2002년 월드컵이 개최된 경기장 인접지역의 대표적인 전통시장이다. 근래에는 망원동에 거주하는 신혼부부 및 싱글족을 겨냥한 신메뉴와 변화를 추구하여 젊은 소비자들이 증가하였다.(이용 가능 시설 : 장보기 대행 서비스, 배송 센터 운영, 쿠폰 발행 및 이벤트 진행)'
+      , DEFAULT
+      , SYSDATE
+      , SYSDATE
+      , '망원시장'
+      , '서울특별시 마포구 포은로8길 14'
+      , '6호선 망원역, 주차 가능(지상 1층, 지하 3층)'
+      , '관람시설 매주 월요일 휴무'
+      , '연중무휴 / 매일 09:00 - 21:00 / 각 점포별 오픈시간과 휴무일이 상이합니다.'
+      , '#먹거리 #전통시장'
+      , DEFAULT
+      );
+      
+INSERT INTO DESTINATION
+     (
+        BOARD_NO
+      , BOARD_WRITER
+      , STATION_NO
+      , TITLE
+      , CONTENT
+      , COUNT
+      , CREATE_DATE
+      , MODIFY_DATE
+      , DTN_NAME
+      , ADDRESS
+      , TRANSPORT
+      , HOLIDAY
+      , RUNTIME
+      , HASHTAG
+      , STATUS
+      )
+ VALUES
+      (
+        generate_custom_id
+      , 2
+      , 101
+      , '아모레퍼시픽 본사에서 만나볼 수 있는 현대 미술 전시'
+      , '서울 용산구에 있는 아모레퍼시픽미술관은 아모레퍼시픽의 창업자 고(故)서성환 회장이 수집한 미술품들을 전시하였던 박물관을 2009년 아모레퍼시픽미술관 (APMA, Amorepacific Museum of Art)로 명칭을 변경하여 전시 운영 중인 미술관이다. ‘일상 속의 아름다움을 발견하는 열린 공간’을 지향하고 대중과 소통하기 위해 설립되었다. 이런 목적에 따라 한국 고미술과 국내외 현대미술을 수집·연구·전시하며, 관련 연구자 및 학회, 젊은 작가를 지원한다. 지하 1층 전시실에서는 고미술과 현대미술, 한국미술을 아우르는 다채로운 기획전시가 열린다. 지상 1~3층까지 이어진 대형 공간 ‘아트리움’ 1층에는 미술관 로비와 뮤지엄숍, 전시공간인 ‘APMA 캐비닛’, 세계의 전시도록 라이브러리(apLAP)의 시설을 갖추고 있다. 용산의 대표적 건축 명소인 하얀색 백자를 모티브로 건축된 아모레퍼시픽 본사 신사옥 1층에 미술관이 있다.'
+      , DEFAULT
+      , SYSDATE
+      , SYSDATE
+      , '아모레퍼시픽미술관'
+      , '서울특별시 용산구 한강대로 100'
+      , '1호선 용산역 / 주차가능'
+      , '매주 월요일, 매년 1월 1일, 설/추석 연휴'
+      , '10:00 ~ 18:00'
+      , '#서울미술관 #문화시설'
+      , DEFAULT
+      );         
+      
+--------------------------------------------------------------------------------------------
+--------------------------여행코스-----------------------------------------------------------
+--------------------------------------------------------------------------------------------
+
+CREATE TABLE COURSE(
+    BOARD_NO VARCHAR2(100) CONSTRAINT COURSE_NO_PK PRIMARY KEY,
+    MEMBER_NO NUMBER CONSTRAINT MEM_NO_NN NOT NULL,
+    TITLE VARCHAR2(200) CONSTRAINT COURSE_TITLE_NN NOT NULL,
+    CONTENT VARCHAR2(4000) CONSTRAINT COURSE_CONTENT_NN NOT NULL,
+    STATION_NO NUMBER CONSTRAINT STATION_NO_NN NOT NULL,
+    DTN_NAME VARCHAR2(50),
+    DTN_1 VARCHAR2(500),
+    DTN_2 VARCHAR2(500),
+    DTN_3 VARCHAR2(500),
+    DTN_4 VARCHAR2(500),
+    COUNT NUMBER DEFAULT 0 CONSTRAINT COUNT_NN  NOT NULL ,
+    CREATE_DATE DATE DEFAULT SYSDATE NOT NULL ,
+    MODIFY_DATE DATE DEFAULT SYSDATE NOT NULL ,
+    STATUS VARCHAR2(5) DEFAULT 'Y' CHECK(STATUS IN ('Y','N')) ,
+    
+    FOREIGN KEY (MEMBER_NO) REFERENCES MEMBER(MEMBER_NO),
+    FOREIGN KEY (STATION_NO) REFERENCES STATION (STATION_NO)
+
+);
+
+    
+CREATE SEQUENCE SEQ_COURSE_NO
+START WITH 1
+INCREMENT BY 1
+NOCYCLE
+NOCACHE;
+
+CREATE OR REPLACE FUNCTION generate_custom_id RETURN VARCHAR2 IS
+    prefix VARCHAR2(10) := 'C';
+    seq_value NUMBER;
+    custom_id VARCHAR2(20);
+BEGIN
+    SELECT SEQ_COURSE_NO.NEXTVAL INTO seq_value FROM dual;
+    custom_id := prefix || TO_CHAR(seq_value);
+    RETURN custom_id;
+END generate_custom_id;
+/
+
+COMMENT ON COLUMN COURSE.BOARD_NO IS '게시글 번호';
+COMMENT ON COLUMN COURSE.MEMBER_NO IS '회원번호';
+COMMENT ON COLUMN COURSE.TITLE IS '게시글 제목';
+COMMENT ON COLUMN COURSE.CONTENT IS '게시글 내용';
+COMMENT ON COLUMN COURSE.STATION_NO IS '역번호';
+COMMENT ON COLUMN COURSE.DTN_NAME IS '여행지명';
+COMMENT ON COLUMN COURSE.COUNT IS '조회수';
+COMMENT ON COLUMN COURSE.CREATE_DATE IS '게시글 작성일';
+COMMENT ON COLUMN COURSE.MODIFY_DATE IS '게시글 수정일';
+COMMENT ON COLUMN COURSE.STATUS IS '게시글 존재여부(Y/N)';
+
+INSERT INTO COURSE
+    (
+       BOARD_NO
+     , MEMBER_NO
+     , TITLE
+     , CONTENT
+     , STATION_NO
+     , DTN_NAME
+     , DTN_1
+     , DTN_2
+     , DTN_3
+     , DTN_4
+     , COUNT
+     , CREATE_DATE
+     , MODIFY_DATE
+     , STATUS
+     )
+VALUES 
+     (
+       generate_custom_id
+     , 1
+     , '아우 더워! 시원한 곳 어디 없을 까~?'
+     , '무더운 여름! 시원하게 보내고 싶다면 에어컨 없이 지낸다는 태백은 어떠신가요?'
+     , 101
+     , '강원도 태백'
+     , ''
+     , ''
+     , ''
+     , ''
+     , 0
+     , SYSDATE
+     , SYSDATE
+     ,'Y'
+     ) ;
+     
+     
+INSERT INTO COURSE
+    (
+       BOARD_NO
+     , MEMBER_NO
+     , TITLE
+     , CONTENT
+     , STATION_NO
+     , DTN_NAME
+     , DTN_1
+     , DTN_2
+     , DTN_3
+     , DTN_4
+     , COUNT
+     , CREATE_DATE
+     , MODIFY_DATE
+     , STATUS
+     )
+VALUES 
+     (
+       generate_custom_id
+     , 2
+     , '물놀이하기 좋은 가평!'
+     , '여름 휴가의 성지는 바로 가평이죠^^'
+     , 201
+     , '경기도 가평'
+     , ''
+     , ''
+     , ''
+     , ''
+     , 0
+     , SYSDATE
+     , SYSDATE
+     ,'Y'
+     ) ;
+     
+INSERT INTO COURSE
+    (
+       BOARD_NO
+     , MEMBER_NO
+     , TITLE
+     , CONTENT
+     , STATION_NO
+     , DTN_NAME
+     , DTN_1
+     , DTN_2
+     , DTN_3
+     , DTN_4
+     , COUNT
+     , CREATE_DATE
+     , MODIFY_DATE
+     , STATUS
+     )
+VALUES 
+     (
+       generate_custom_id
+     , 3
+     , '힐링하고 싶다면?'
+     , '바쁘다 바빠 현대사회ㅠㅠ 고생한 당신을 위한 힐링 여행장소는 바로 여기다! 용인 휴양림으로 모두 집합~!'
+     , 301
+     , '경기도 용인'
+     , ''
+     , ''
+     , ''
+     , ''
+     , 0
+     , SYSDATE
+     , SYSDATE
+     ,'Y'
+     ) ;
+     
+-----------------------------------------------------------------------------------------
+-------------------------------여행후기---------------------------------------------------
+-----------------------------------------------------------------------------------------
+
+CREATE TABLE REVIEW(
+    BOARD_NO VARCHAR2(100) CONSTRAINT R_BOARD_NO_PK PRIMARY KEY,
+    STATION_NO NUMBER CONSTRAINT R_STATION_NO_NN NOT NULL,
+    BOARD_WRITER NUMBER CONSTRAINT R_BOARD_WRITER_NN NOT NULL,
+    TITLE VARCHAR2(200) CONSTRAINT R_TITLE_NN NOT NULL,
+    CONTENT VARCHAR2(4000) CONSTRAINT R_CONTENT_NN NOT NULL,
+    TIP VARCHAR2(4000),
+    COUNT NUMBER DEFAULT 0 CONSTRAINT R_COUNT_NN NOT NULL,
+    CREATE_DATE DATE DEFAULT SYSDATE CONSTRAINT R_CREATE_DATE_NN NOT NULL,
+    MODIFY_DATE DATE DEFAULT SYSDATE CONSTRAINT R_MODIFY_DATE_NN NOT NULL,
+    DTN_NAME VARCHAR2(500) CONSTRAINT R_DTN_NAME_NN NOT NULL,
+    ADDRESS VARCHAR2(500),
+    STATUS VARCHAR2(5) DEFAULT 'Y' CHECK(STATUS IN ('Y','N')),
+    
+    FOREIGN KEY (STATION_NO) REFERENCES STATION (STATION_NO),
+    FOREIGN KEY (BOARD_WRITER) REFERENCES MEMBER (MEMBER_NO)
+);
+
+CREATE SEQUENCE SEQ_REVIEW_NO
+START WITH 1
+INCREMENT BY 1
+NOCYCLE
+NOCACHE;
+
+CREATE OR REPLACE FUNCTION generate_custom_id RETURN VARCHAR2 IS
+    prefix VARCHAR2(10) := 'R';
+    seq_value NUMBER;
+    custom_id VARCHAR2(20);
+BEGIN
+    SELECT SEQ_COURSE_NO.NEXTVAL INTO seq_value FROM dual;
+    custom_id := prefix || TO_CHAR(seq_value);
+    RETURN custom_id;
+END generate_custom_id;
+/
+
+
+COMMENT ON COLUMN REVIEW.BOARD_NO IS '게시글 번호';
+COMMENT ON COLUMN REVIEW.STATION_NO IS '역번호';
+COMMENT ON COLUMN REVIEW.BOARD_WRITER IS '회원번호';
+COMMENT ON COLUMN REVIEW.TITLE IS '게시글 제목';
+COMMENT ON COLUMN REVIEW.CONTENT IS '게시글 내용';
+COMMENT ON COLUMN REVIEW.TIP IS '꿀팁란';
+COMMENT ON COLUMN REVIEW.COUNT IS '조회수';
+COMMENT ON COLUMN REVIEW.CREATE_DATE IS '게시글 작성일';
+COMMENT ON COLUMN REVIEW.MODIFY_DATE IS '게시글 수정일';
+COMMENT ON COLUMN REVIEW.DTN_NAME IS '여행지명';
+COMMENT ON COLUMN REVIEW.ADDRESS IS '여행지주소';
+COMMENT ON COLUMN REVIEW.STATUS IS '게시글 존재여부(Y/N)';
+
+
+INSERT INTO REVIEW
+      (
+        BOARD_NO
+      , STATION_NO
+      , BOARD_WRITER
+      , TITLE
+      , CONTENT
+      , TIP
+      , COUNT
+      , CREATE_DATE
+      , MODIFY_DATE
+      , DTN_NAME
+      , ADDRESS
+      , STATUS
+      )
+VALUES
+     (
+        generate_custom_id
+      , 501
+      , 1
+      , '야경하면 한강!!'
+      , '밤에 야경보면서 치맥하고 싶다면 한강공원만한 곳이 없어요ㅜㅜ 내일은 선선한 저녁에 저희집 강아지 둥이랑 한번 더 와야겠어요!'
+      , '피크닉 세트를 대여하면 더 편안하게 즐기실 수 있답니다'
+      , 0
+      , SYSDATE
+      , SYSDATE
+      , '여의도 한강 공원'
+      , '서울 영등포구 여의동로 330'
+      , 'Y'
+      );
+      
+INSERT INTO REVIEW
+      (
+        BOARD_NO
+      , STATION_NO
+      , BOARD_WRITER
+      , TITLE
+      , CONTENT
+      , TIP
+      , COUNT
+      , CREATE_DATE
+      , MODIFY_DATE
+      , DTN_NAME
+      , ADDRESS
+      , STATUS
+      )
+VALUES
+     (
+        generate_custom_id
+      , 101
+      , 2
+      , '갔다 하면 배불뚝해서 나오는 광장시장ㅎㅎ'
+      , '가장 유명한 육회, 빈대떡은 물론이고 요즘 성수에서 힙한 어니언이 광장시장 입구에도 생겨서 광장시장점에서만 파는 파이를 먹어봤는데.. 녹아버렸어요'
+      , '2층에 구제 판매점도 있어서 두둑히 먹고 쇼핑으로 소화시키면 개꿀!'
+      , 0
+      , SYSDATE
+      , SYSDATE
+      , '광장시장'
+      , '서울특별시 종로구 창경궁로 88'
+      , 'Y'
+      );
+
+INSERT INTO REVIEW
+      (
+        BOARD_NO
+      , STATION_NO
+      , BOARD_WRITER
+      , TITLE
+      , CONTENT
+      , TIP
+      , COUNT
+      , CREATE_DATE
+      , MODIFY_DATE
+      , DTN_NAME
+      , ADDRESS
+      , STATUS
+      )
+VALUES
+     (
+        generate_custom_id
+      , 901
+      , 3
+      , '어라,, 궁전인가? 하는 서울식물원'
+      , '부모님과 함께 다녀왔는데 엄청 좋아하셨어요!! 식물도 다양해서 입장료가 아깝지 않았습니다.'
+      , '매표마감은 운영시간보다 1시간 일찍 마감하니 참고하세요!'
+      , 0
+      , SYSDATE
+      , SYSDATE
+      , '서울식물원'
+      , '서울특별시 강서구 마곡동로 161'
+      , 'Y'
+      );
+
+-----------------------------------------------------------------------------------------------------
+--------------------------------인기검색어------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+
+CREATE TABLE HOT_KEYWORD(
+    STATION_NO NUMBER CONSTRAINT HK_STATION_NO_FK REFERENCES STATION(STATION_NO),
+    SEARCH_DATE DATE CONSTRAINT HK_DATE_NN NOT NULL,
+    COUNT NUMBER DEFAULT 0 CONSTRAINT HK_COUNT_NN NOT NULL,
+    
+    PRIMARY KEY(STATION_NO, SEARCH_DATE)
+    );
+    
+COMMENT ON COLUMN HOT_KEYWORD.STATION_NO IS '역번호';
+COMMENT ON COLUMN HOT_KEYWORD.SEARCH_DATE IS '검색날짜';
+COMMENT ON COLUMN HOT_KEYWORD.COUNT IS '검색횟수';
+
+INSERT INTO HOT_KEYWORD
+     (
+       STATION_NO
+     , SEARCH_DATE
+     , COUNT
+     )
+VALUES
+     (
+       701
+     , '2023/08/15'
+     , DEFAULT
+     );
+      
+INSERT INTO HOT_KEYWORD
+     (
+       STATION_NO
+     , SEARCH_DATE
+     , COUNT
+     )
+VALUES
+     (
+       801
+     , '2023/05/24'
+     , DEFAULT
+     );
+     
+INSERT INTO HOT_KEYWORD
+     (
+       STATION_NO
+     , SEARCH_DATE
+     , COUNT
+     )
+VALUES
+     (
+       401
+     , SYSDATE
+     , DEFAULT
+     );     
+
+---------------------------------------------------------------------
+---------------------------댓글--------------------------------------
+----------------------------------------------------------------------
+
+CREATE TABLE COMMENTS(
+ COMMENT_NO NUMBER CONSTRAINT COMMENT_PK PRIMARY KEY,
+ MEMBER_NO NUMBER CONSTRAINT R_MEMNO_FK REFERENCES MEMBER(MEMBER_NO),
+ BOARD_NO VARCHAR2(100) CONSTRAINT R_BNO_NN NOT NULL,
+ COMMENT_CONTENT VARCHAR2(4000) CONSTRAINT R_COM_NN NOT NULL,
+ ENROLL_DATE DATE CONSTRAINT R_ENROLL_DATE NOT NULL,
+ MODIFY_DATE DATE CONSTRAINT R_MODIFY_DATE NOT NULL,
+ STATUS VARCHAR2(5)DEFAULT'Y' CONSTRAINT R_STATUS NOT NULL CHECK(STATUS IN('Y','N')));
+ 
+COMMENT ON COLUMN COMMENTS.COMMENT_NO IS '댓글번호';
+COMMENT ON COLUMN COMMENTS.MEMBER_NO IS '댓글작성자';
+COMMENT ON COLUMN COMMENTS.BOARD_NO IS '참조게시글번호';
+COMMENT ON COLUMN COMMENTS.COMMENT_CONTENT IS '댓글내용';
+COMMENT ON COLUMN COMMENTS.ENROLL_DATE IS '댓글작성일';
+COMMENT ON COLUMN COMMENTS.MODIFY_DATE IS '댓글수정일';
+COMMENT ON COLUMN COMMENTS.STATUS IS '댓글상태';
+
+CREATE SEQUENCE SEQ_COMMENT_NO
+START WITH 1
+INCREMENT BY 1
+NOCYCLE
+NOCACHE;
+
+INSERT INTO COMMENTS
+(
+  COMMENT_NO
+, MEMBER_NO
+, BOARD_NO
+, COMMENT_CONTENT
+, ENROLL_DATE
+,MODIFY_DATE
+,STATUS
+)
+VALUES
+(
+ SEQ_COMMENT_NO.NEXTVAL
+ , 1
+ , 'D1'
+ , '안녕하세요'
+ , SYSDATE
+ , SYSDATE
+ , 'Y'
+ );
+
+----------------------------------------------------------------------------
+------------------------좋아요----------------------------------------------
+----------------------------------------------------------------------------
+
+CREATE TABLE LIKED(
+    MEMBER_NO NUMBER CONSTRAINT LIKE_MEM_NO_FK REFERENCES MEMBER(MEMBER_NO),
+    BOARD_NO VARCHAR2(100) CONSTRAINT LIKE_BNO_FK REFERENCES REVIEW(BOARD_NO)
+    );
+    
+COMMENT ON COLUMN LIKED.MEMBER_NO IS '회원번호';
+COMMENT ON COLUMN LIKED.BOARD_NO IS '게시글번호';
+
+CREATE SEQUENCE SEQ_LBOARD_NO
+START WITH 1
+INCREMENT BY 1
+NOCYCLE
+NOCACHE;
+
+---------------------------------------------------------------------------
+--------------------------------공지사항------------------------------------
+---------------------------------------------------------------------------
+
+CREATE TABLE NOTICE(
+    NOTICE_NO NUMBER CONSTRAINT NOTICE_NO_PK PRIMARY KEY,
+    NOTICE_WRITER NUMBER CONSTRAINT NOTICE_WRITER_NN NOT NULL,
+    NOTICE_TITLE VARCHAR2(200) CONSTRAINT NOTICE_TITLE_NN NOT NULL,
+    NOTICE_CONTENT VARCHAR2(4000) CONSTRAINT NOTICE_CONTENT_NN NOT NULL,
+    COUNT NUMBER DEFAULT 0  CONSTRAINT NOTICE_COUNT_NN NOT NULL,
+    CREATE_DATE DATE DEFAULT SYSDATE CONSTRAINT NOTICE_DATE_NN  NOT NULL,
+    STATUS VARCHAR2(5) DEFAULT 'Y' CHECK(STATUS IN ('Y','N')) CONSTRAINT NOTICE_STATUS_NN NOT NULL,
+    
+    FOREIGN KEY(NOTICE_WRITER) REFERENCES MEMBER (MEMBER_NO)
+
+);
+
+COMMENT ON COLUMN NOTICE.NOTICE_NO IS '공지사항 번호';
+COMMENT ON COLUMN NOTICE.NOTICE_WRITER IS '공지사항 작성자';
+COMMENT ON COLUMN NOTICE.NOTICE_TITLE IS '공지사항 제목';
+COMMENT ON COLUMN NOTICE.NOTICE_CONTENT IS '공지사항 내용';
+COMMENT ON COLUMN NOTICE.COUNT IS '공지사항 조회수';
+COMMENT ON COLUMN NOTICE.CREATE_DATE IS '공지사항 작성일';
+COMMENT ON COLUMN NOTICE.STATUS IS '공지사항 존재유무(Y/N)';
+
+CREATE SEQUENCE SEQ_NOTICE
+START WITH 1
+INCREMENT BY 1
+NOCYCLE
+NOCACHE;
+
+INSERT INTO NOTICE
+     (
+       NOTICE_NO
+     , NOTICE_WRITER
+     , NOTICE_TITLE
+     , NOTICE_CONTENT
+     , COUNT
+     , CREATE_DATE
+     , STATUS
+     )
+VALUES
+    (
+      SEQ_NOTICE.NEXTVAL
+    , 1
+    , '전체 공지사항입니다.'
+    , '회원탈퇴를 원하시는 분들이 계신던데 우리 사이트는 회원탈퇴 불가합니다.'
+    , 0
+    , SYSDATE
+    , 'Y'
+    
+    );
+
+
+INSERT INTO NOTICE
+     (
+       NOTICE_NO
+     , NOTICE_WRITER
+     , NOTICE_TITLE
+     , NOTICE_CONTENT
+     , COUNT
+     , CREATE_DATE
+     , STATUS
+     )
+VALUES
+    (
+      SEQ_NOTICE.NEXTVAL
+    , 1
+    , '회원 활동정지에 대해'
+    , '활동 정지된 회원은 반성하세요'
+    , 0
+    , SYSDATE
+    , 'Y'
+    
+    );
+
+------------------------------------------------------------------------------------
+---------------------첨부파일-----------------------------------------------------
+-----------------------------------------------------------------------------------
+CREATE TABLE UPLOADFILE(
+ FILE_NO NUMBER PRIMARY KEY,
+ REFD_BNO NUMBER NOT NULL,
+ ORIGIN_NAME VARCHAR2(500) NOT NULL,
+ CHANGE_NAME VARCHAR2(500) NOT NULL,
+ FILE_PATH VARCHAR2(1000) NOT NULL,
+ UPLOAD_DATE DATE NOT NULL,
+ FILE_LEVEL NUMBER NOT NULL,
+ STATUS VARCHAR2(5) DEFAULT 'Y' CHECK(STATUS IN('Y','N'))
+ );
+ 
+ COMMENT ON COLUMN UPLOADFILE.FILE_NO IS '파일번호';
+ COMMENT ON COLUMN UPLOADFILE.REFD_BNO IS '게시글번호';
+ COMMENT ON COLUMN UPLOADFILE.ORIGIN_NAME IS '파일원본명';
+ COMMENT ON COLUMN UPLOADFILE.CHANGE_NAME IS '파일수정명';
+ COMMENT ON COLUMN UPLOADFILE.FILE_PATH IS '저장폴더경로';
+ COMMENT ON COLUMN UPLOADFILE.UPLOAD_DATE IS '업로드일';
+ COMMENT ON COLUMN UPLOADFILE.FILE_LEVEL IS '파일레벨(1/2)';
+ COMMENT ON COLUMN UPLOADFILE.STATUS IS '상태';
+ 
+ CREATE SEQUENCE SEQ_FILE_NO
+ START WITH 1
+ INCREMENT BY 1
+ NOCYCLE
+ NOCACHE;
+
+----------------------------------------------------------------------------------
+---------------신고테이블-------------------------------------------------------
+----------------------------------------------------------------------------------
+
+CREATE TABLE REPORT(
+    REPORT_NO NUMBER CONSTRAINT RNO_PK PRIMARY KEY,
+    SMEM_NO NUMBER CONSTRAINT SNO_NN NOT NULL CONSTRAINT REPORT_FK_SMEM REFERENCES MEMBER(MEMBER_NO) ON DELETE SET NULL,
+    PMEM_NO NUMBER CONSTRAINT PNO_NN NOT NULL CONSTRAINT REPORT_FK_PMEM REFERENCES MEMBER(MEMBER_NO) ON DELETE SET NULL,
+    REPORT VARCHAR2(5) CHECK(REPORT IN ('Y','N')),
+    BOARD_NO VARCHAR2(100) CONSTRAINT BNO_NN NOT NULL);
+
+COMMENT ON COLUMN REPORT.REPORT_NO IS '신고일련번호';
+COMMENT ON COLUMN REPORT.SMEM_NO IS '신고자번호';
+COMMENT ON COLUMN REPORT.PMEM_NO IS '피신고자번호';
+COMMENT ON COLUMN REPORT.REPORT IS '신고여부(Y/N)';
+COMMENT ON COLUMN REPORT.BOARD_NO IS '게시글번호';
+
+CREATE SEQUENCE SEQ_REPORT_NO
+START WITH 1
+INCREMENT BY 1
+NOCYCLE
+NOCACHE;
+
+INSERT INTO REPORT
+(
+     REPORT_NO
+    ,SMEM_NO
+    ,PMEM_NO
+    ,REPORT
+    ,BOARD_NO
+    )
+VALUES
+(
+    SEQ_REPORT_NO.NEXTVAL
+   , 2
+   , 3
+   ,'Y'
+   ,'D1'
+   );
+INSERT INTO REPORT
+(
+     REPORT_NO
+    ,SMEM_NO
+    ,PMEM_NO
+    ,REPORT
+    ,BOARD_NO
+    )
+VALUES
+(
+    SEQ_REPORT_NO.NEXTVAL
+   , 3
+   , 2
+   ,'Y'
+   ,'C2'
+   );
+
+
+
+COMMIT;
+--ROLLBACK;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여행 코스 글쓰기</title>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+
+    <!-- summernote 부트스트랩 -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> 
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
+
+    <style>
+        .wrap{
+            /* border: 1px solid red; */
+            width: 1000px;
+            height: 1200px;
+            margin: auto;
+            margin-top: 50px;
+        }
+
+        .wrap>div,form{
+            width: 100%;
+            box-sizing: border-box;
+            /* border: 1px solid blue; */
+        }
+
+
+
+
+        /* 맨 위 */
+        .corse1{
+            height: 5%;
+            box-sizing: border-box;
+        }
+
+
+        form{
+          
+          height: 95%;
+          box-sizing: border-box;
+      }
+
+
+        /* 제목, 파일(사진) */
+        .corse2{
+            height: 8%;
+            box-sizing: border-box;
+        }
+
+       
+
+        /* 지도(사진) */
+        .corse3{
+            height: 27%;
+            box-sizing: border-box;
+        }
+
+        /* 코스 순서 */
+        .corse4{
+            height: 25%;
+            box-sizing: border-box;
+        }
+
+        /* 코스 내용 */
+        .corse5{
+            height: 15%;
+            box-sizing: border-box;
+        }
+
+         /* 꿀팁란 */
+        .corse6{
+        height: 15%;
+        box-sizing: border-box;
+        }
+
+
+        /* 버튼 */
+        .corse7{
+        height: 5%;
+        box-sizing: border-box;
+        }
+
+
+
+
+        /* 세세하게 나누기 */
+
+        /* corse2 나누기  */
+        .corse2>div{
+            /* border: 1px dashed green; */
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        #corseTitle{
+            height: 40%;
+            box-sizing: border-box;
+        }
+
+        /* 제목입력 input */
+        #corseTitle>input{
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        #file{
+            height: 60%;
+            box-sizing: border-box;
+            background-color: #f7f7f7;
+            position: relative;
+        }
+
+        #file>input{
+            position: absolute;
+            margin-left: 10px;
+            margin-top: 13px;
+        }
+
+
+
+         /* 지도(사진) */
+         .corse3{
+            height: 23%;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+
+        /* 코스 순서 */
+       .corse4{
+            height: 39%;
+            box-sizing: border-box;
+            margin-top: 50px;
+        }
+
+        /* 코스 내용 */
+        .corse5{
+            height: 20%;
+            box-sizing: border-box;
+        }
+
+         /* 꿀팁란 */
+        .corse6{
+        height: 10%;
+        box-sizing: border-box;
+        }
+
+
+        /* 버튼 */
+        .corse7{
+        height: 5%;
+        box-sizing: border-box;
+        margin-top: 5px;
+        }
+
+
+
+
+        /* 세세하게 나누기 */
+
+        /* corse2 나누기  */
+        .corse2>input{
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        .corse3>img{
+            height: 100%;
+            margin-left: 150px;
+        }
+
+        /* 내용입력란 */
+        #corseContent>textarea{
+            margin-top: 40px;
+            height: 80%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+
+        /* corse4 */
+        /* 코스 입력div */
+        .corse4>div{
+            /* border: 1px solid lightgray; */
+            height: 20%;
+            width: 80%;
+            box-sizing: border-box;
+            margin: 10px 0 10px 75px;
+            /* background-color: lightgray;  */
+            
+
+        }
+
+        #seq1>div{
+            /* border: 1px solid lightgrey; */
+            height: 100%;
+            box-sizing: border-box;
+            float: left;
+        }
+
+        #seq1-1{
+            width: 10%;
+            box-sizing: border-box;
+          
+
+            padding: 30px;
+        
+        
+            
+        }
+      
+        
+        #seq1-2{
+            width: 25%;
+            box-sizing: border-box;
+            /* border: 1px solid #f7f7f7; */
+            border-right: 0;
+            background-color: #f7f7f7;
+           
+        }
+
+        
+        #seq1-3{
+            width: 65%;
+            box-sizing: border-box;
+            /* border: 1px solid #f7f7f7; */
+            border-left: 0;
+            background-color: #f7f7f7;
+        }
+
+
+        #seq2>div{
+            /* border: 1px solid lightgrey; */
+            height: 100%;
+            box-sizing: border-box;
+            float: left;
+        }
+
+        #seq2-1{
+            width: 10%;
+            box-sizing: border-box;
+            padding: 30px;
+        }
+      
+        
+        #seq2-2{
+            width: 25%;
+            box-sizing: border-box;
+            /* border: 1px solid lightgray; */
+            border-right: 0;
+            background-color: #f7f7f7;
+        }
+
+        
+        #seq2-3{
+            width: 65%;
+            box-sizing: border-box;
+            /* border: 1px solid lightgray; */
+            border-left: 0;
+            background-color: #f7f7f7;
+        }
+
+
+
+        #seq3>div{
+            /* border: 1px solid lightgrey; */
+            height: 100%;
+            box-sizing: border-box;
+            float: left;
+        }
+
+        #seq3-1{
+            width: 10%;
+            box-sizing: border-box;
+            padding: 30px;
+        }
+      
+        
+        #seq3-2{
+            width: 25%;
+            box-sizing: border-box;
+            /* border: 1px solid lightgray; */
+            border-right: 0;
+            background-color: #f7f7f7;
+        }
+
+        
+        #seq3-3{
+            width: 65%;
+            box-sizing: border-box;
+            /* border: 1px solid lightgray; */
+            border-left: 0;
+            background-color: #f7f7f7;
+        }
+
+
+        #seq4>div{
+            /* border: 1px solid lightgrey; */
+            height: 100%;
+            box-sizing: border-box;
+            float: left;
+        }
+
+        #seq4-1{
+            width: 10%;
+            box-sizing: border-box;
+            padding: 30px;
+        }
+      
+        
+        #seq4-2{
+            width: 25%;
+            box-sizing: border-box;
+            /* border: 1px solid lightgray; */
+            border-right: 0;
+            background-color: #f7f7f7;
+        }
+
+        
+        #seq4-3{
+            width: 65%;
+            box-sizing: border-box;
+            /* border: 1px solid lightgray; */
+            border-left: 0;
+            background-color: #f7f7f7;
+        }
+
+        .corse4 img{
+            height: 80%;
+            width: 70%;
+            margin-top: 10px;
+            margin-left: 10px;
+            border-radius: 20px;
+        }
+
+
+
+
+
+        /* corse6 */
+        .corse6>textarea{
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        
+
+        #button{
+        text-align: right;
+       }
+
+
+
+    </style>
+
+
+</head>
+<body>
+    <div class="wrap">
+
+        <div class="corse1" id="up">
+            <h2 style="margin-left: 15px; color: gray;"> <b>여행코스 글쓰기</b></h2>
+        </div>
+
+
+    <form action="#" method="post">
+
+    
+     
+        <div class="corse2" id="corseTitle-file">
+            <div id="corseTitle">
+              <input type="text" name="corseTitle" placeholder="제목을 입력해주세요.">
+
+            </div>
+
+            <div id="file">
+                <input type="file">
+            </div>
+
+        </div>
+
+        <div class="corse3" id="map">
+              <!-- 지도를 첨부할 수 있는지 몰라서 일단 임시로 사진으로 대체 -->
+              <img src="resources/image/지도.png" >
+        </div>
+
+        <div class="corse4" id="sequence">
+
+               
+                <div id="seq1">
+                    <div id="seq1-1">1</div>
+
+                    <div id="seq1-2">
+                        <img src="resources/image/city1.PNG" alt="">
+                    </div>
+
+                    <div id="seq1-3">장소</div>
+                </div>
+ 
+             
+
+              <div id="seq2">
+                    <div id="seq2-1">2</div>
+                    <div id="seq2-2">
+                        <img src="resources/image/flower4.PNG" alt="">
+                    </div>
+
+                    <div id="seq2-3">장소</div>
+              </div>
+
+              <div id="seq3">
+                    <div id="seq3-1">3</div>
+                    <div id="seq3-2">
+                        <img src="resources/image/forest1.PNG" alt="">
+                    </div>
+
+                    <div id="seq3-3">장소</div>
+              </div>
+
+              <div id="seq4">
+                    <div id="seq4-1">4</div>
+                    <div id="seq4-2">
+                        <img src="resources/image/river2.PNG" alt="">
+                    </div>
+
+                    <div id="seq4-3">장소</div>
+              </div>
+              
+
+
+
+        </div>
+            <div class="corse5" id="corseContent">
+            
+                <textarea name="corseContent" style="resize: none;" placeholder=" 내용을 입력해주세요."></textarea>
+            </div>
+
+            <div class="corse6" id="tip">
+                <textarea name="tip" id="tip" style="resize: none;" placeholder="꿀팁란!! 마음껏 입력해주세요."></textarea>
+            </div>
+
+            <div class="corse7" id="button">
+                <a href="#" class="btn btn-secondary" >작성하기</a>
+                <input type="reset" class="btn btn-secondary" value="초기화">
+                <a href="#" class="btn btn-secondary" > 뒤로가기</a>
+
+            </div>  
+         
+  </form>
+    
+
+</div>
+
+
+
+    <script>
+        $('.summernote').summernote({
+              // 에디터 높이
+            //   width:1000,
+              height:170,
+           
+              // 에디터 한글 설정
+              lang: "ko-KR",
+              // 에디터에 커서 이동 (input창의 autofocus라고 생각하시면 됩니다.)
+              focus : true,
+              toolbar: [
+                    // 글꼴 설정
+                    ['fontname', ['fontname']],
+                    // 글자 크기 설정
+                    ['fontsize', ['fontsize']],
+                    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+                    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+                    // 글자색
+                    ['color', ['forecolor','color']],
+                    // 표만들기
+                    ['table', ['table']],
+                    // 글머리 기호, 번호매기기, 문단정렬
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    // 줄간격
+                    ['height', ['height']],
+                   
+                  ],
+                  // 추가한 글꼴
+                fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+                 // 추가한 폰트사이즈
+                fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+    
+    
+                
+                
+            });
+        </script>
+</body>
+</html>
