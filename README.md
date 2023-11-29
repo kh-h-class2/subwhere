@@ -27,6 +27,7 @@
 ## 🌈Technology Stack
 <div style="display:flex; flex-direction:row;">
     <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=Java&logoColor=white"> 
+    <img src="https://img.shields.io/badge/JSP&Servlet-83B81A?style=for-the-badge&logo=JSP&logoColor=white">
   <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"> 
     <img src="https://img.shields.io/badge/oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white"> 
   <img src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white"> 
