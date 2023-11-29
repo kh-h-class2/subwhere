@@ -40,7 +40,7 @@
     <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> 
     <img src="https://img.shields.io/badge/bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white">
 </div>
-<br><br>
+<br>
 
 ## ERD
 <img width="1007" alt="ERD" src="https://github.com/ge4621/semi/assets/134485729/6ffb3f6a-1edc-421f-96bf-bc27b537d2b2">
