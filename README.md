@@ -1,10 +1,10 @@
 # subwhere
 
 ![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&width=auto&section=header&text=Welcome%20to%20SUB-WHERE%20Project%20🖐️&fontSize=35&animation=fadeIn&fontAlignY=38)
-<br><br>
+<br>
 
 ## 개발 기간
-2023.07.21 ~ 2023.09.08 
+2023.08.21 ~ 2023.09.08 
 <br><br>
 
 ## 프로젝트 명 - SUB-WHERE
