@@ -9,23 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import com.kh.board.model.service.SightService;
-
 import com.kh.board.model.vo.Sight;
 import com.kh.common.model.vo.PageInfo;
 
 /**
- * Servlet implementation class SightListController
+ * Servlet implementation class SightCountListController
  */
-@WebServlet("/list.si")
-public class SightListController extends HttpServlet {
+@WebServlet("/count.si")
+public class SightCountListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SightListController() {
+    public SightCountListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,7 +32,6 @@ public class SightListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		//-----------------페이징 처리---------------
 				//핵어려움 주의 + 원리를 파악 => 결국은 공식을 외우면 다 끝나는 문젬
 				
@@ -48,8 +45,11 @@ public class SightListController extends HttpServlet {
 				int startPage; //페이징바의 시작수
 				int endPage; //페이징바의 끝수
 				
+				request.setCharacterEncoding("UTF-8");
+				String search =request.getParameter("buttonText");
+				
 				//*listCount : 총 게시글 개수
-				listCount = new SightService().selectListCount();
+				listCount = new SightService().selectListCount(search);
 				//*currentPage : 현재 페이지 (즉, 사용자가 요청한 페이지)
 				currentPage = Integer.parseInt(request.getParameter("cpage"));
 				
@@ -70,7 +70,7 @@ public class SightListController extends HttpServlet {
 				
 				
 				endPage =  startPage + pageLimit -1;
-				
+			
 				//startPage가 11이면 endPage는 20으로 됨 (근데 maxPage가 고작 13밖에 안되면??)
 				if(endPage >maxPage) {
 					endPage = maxPage;
@@ -82,14 +82,20 @@ public class SightListController extends HttpServlet {
 				
 				//*현재 요청한 페이지(currentPage)에 보여질 게시글 리스트 boardLimit 수만큼 조회해가기
 				
-				ArrayList<Sight> list = new SightService().selectList(pi);
+				
+				if(search !=null) {
+				ArrayList<Sight> list = new SightService().selectListOrderByCount(search,pi);
 				
 				request.setAttribute("pi", pi);
 				request.setAttribute("list", list);
+				request.setAttribute("buttonText", search);
+				request.setAttribute("orderByCount", 1);
+				
+			
 				
 				request.getRequestDispatcher("views/sights/sightList.jsp").forward(request, response);
-		
-		
+				}
+				
 	}
 
 	/**
