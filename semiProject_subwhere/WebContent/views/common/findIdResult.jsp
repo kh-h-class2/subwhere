@@ -2,9 +2,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% 
-	String contextPath = request.getContextPath(); 
+	String contextPath = request.getContextPath(); // /jsp
 
 	Member loginMember = (Member)session.getAttribute("loginMember");
+	//MEMBER_NO, MEMBER_NAME, MEMBER_ID, MEMBER_PWD, PHONE, EMAIL, NICKNAME, STATUS, ENROLL_DATE, PROFILE_IMG
+	Member findIdMem = (Member)session.getAttribute("findIdMem");
+	//MEMBER_NO, MEMBER_NAME, MEMBER_ID, MEMBER_PWD, PHONE, EMAIL, NICKNAME, STATUS, ENROLL_DATE, PROFILE_IMG
 	
 	String alertMsg = (String)session.getAttribute("alertMsg");
 %>
@@ -159,7 +162,7 @@
 
         /*-----------로그인 후-----------*/
         
-        .user_info{
+        #user_info{
             /* border: 2px solid lightskyblue; */
             width: 200px;
             height: 80px;
@@ -172,12 +175,12 @@
             left:15px;
 
         }
-        .user_info img{ /*프사*/
+        #user_info img{ /*프사*/
             /* border: 1px solid; */
             width: 65px;
             margin-top: 5px;
         }
-        .user_info b{ /*닉네임*/
+        #user_info b{ /*닉네임*/
             /* border: 1px solid; */
             font-size: 17px;
             vertical-align: sub;
@@ -213,10 +216,7 @@
             right: 2px;
             top: 120px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
-        }
-        
-        #usermenu_page b,p{
-        	font-family: 'SUITE-Regular';
+            
         }
         
         .usermenu_page .btn{
@@ -285,16 +285,14 @@
             height: 200px;
         }
         #usermenu_page_login a{ /* 로그인 버튼 아래 ID찾기, 비번찾기, 회원가입*/
-            /*text-decoration: none;*/
+            text-decoration: none;
             color: rgb(96, 96, 96);
-            font-weight: 400;
-            font-family: 'LINESeedKR-Bd';
-            font-size: 16px;
+            font-weight: 700;
         }
         #usermenu_page_login a:hover{ /* 로그인 버튼 아래 ID찾기, 비번찾기, 회원가입*/
             text-decoration: none;
             color: #007fff;
-            font-weight: 400;
+            font-weight: 700;
         }
 
         /* 로그인 성공 후 usermenu_page_login_success */
@@ -375,9 +373,11 @@
 
         /* 비밀번호 변경 성공, ID/비번 찾기 실패*/
         .usermenu_page_plain table{
-            width: 270px;
+            width: 280px;
             text-align: center;
             font-weight: 700;
+            margin-top: 250px;
+            font-size: 14px;
         }
         
         
@@ -410,39 +410,10 @@
             border: 1px #ededed;
         }
         
-        /* 스위트 */
-		@font-face {
-		    font-family: 'SUITE-Regular';
-		    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
-		    font-weight: 400;
-		    font-style: normal;
-		}
-		
-		* {
-			font-family: 'SUITE-Regular';
-		}
-        
        
     </style>
 </head>
 <body>
-
-		<%if(alertMsg != null){ %>
-		      <script>
-		         alert("<%=alertMsg%>");
-		      
-		      </script>   
-		      <%
-		      
-		      // 회원가입 성공 후 다른 메뉴를 누르면 계속 alert가 발생 
-		      // alert 막기 (하단 코드)
-		      
-		      %>
-		      
-		      <% session.removeAttribute("alertMsg"); %>
-		      
-		
-		   <%} %>
     
     <div id="header">
         
@@ -455,11 +426,11 @@
             <!-- 역 검색창 -->
 
             
-            <form action="<%=contextPath %>/searchStation.do?cpage=1" id="search_form" method="get">
-				
+            <form action="<%=contextPath %>/selectStation.do" id="search_form" method="get">
+
                 <div id="search_station">
                     
-                    <select id="station-line" name="station-line" onclick="categoryChange();" style="height: 36px; width: 170px; font-family: 'SUITE-Regular';">
+                    <select onclick="categoryChange();" style="height: 36px; width: 170px; font-family: 'SUITE-Regular';" id="station-line">
                       
                         <option>호선 번호 선택</option>
                         <option value="1">1호선</option>
@@ -474,11 +445,9 @@
     
                     </select>
                     
-                    <select id="stationName" name="station-name" style="height: 36px; width: 150px; font-family: 'SUITE-Regular';">
+                    <select id="stationName" style="height: 36px; width: 150px; font-family: 'SUITE-Regular';" name="stationName">
                        <option >역 명 선택</option>
                     </select>
-                    
-                    
 
                     <script>
                     // selectbox를 클릭했을 때 ajax
@@ -492,44 +461,40 @@
 
                             success:function(list){
                                 if(list == null){  // '호선 선택'을 눌렀을 경우
-                                    $("station-name").html("");   // 먼저 역명 부분을 모두 비워주기
-                                    let val = "<option>역 명 선택</option>";  //역명 선택을 그려주기
-                                    $("station-name").html(val);  // 역명이 들어가는 부분에 val값 넣기 
+                                    $("stationName").html("");   // 먼저 역명 부분을 모두 비워주기
+                                    let val = "<option >역 명 선택</option>";  //역명 선택을 그려주기
+                                    $("stationName").html(val);  // 역명이 들어가는 부분에 val값 넣기 
                                 }else{
                                     
                                     // 만약 호선이 잘 넘어왔다면
                                     console.log(list)
                                     let val = "";
-                                    console.log($("station-name").html(val));
+                                    
 
                                 for(let i=0; i<list.length; i++){
                                     
-                                    val += "<option value='" + list[i].stationNo +"'>" + list[i].stationName + "</option>"
+                                    val += "<option value= 'list[i].stationNo'>" + list[i].stationName + "</option>"
                                     
                                     $("#stationName").html(val);  // val에 옵션을 그려주고 selectbox에 넣어주기
                                     
-                                	}
+                                    
+                                }
                                     
                                 }
                             },
                             error:function(){}
-                            })
+                        })
 
-                        }
-                    
-                    
-
+                    }
                     </script>
 
                     <!-- 검색버튼 -->
-                    <div id="search_btn" style="font-family: 'SUITE-Regular';">
-                    	<button type="submit" class="btn btn-primary">검색</button>
+                    <div id="search_btn" style="font-family: 'SUITE-Regular'">
+                        <input type="submit" value="검색" class="btn btn-primary">
                     </div>
                    
             
                 </div>
-            
-            	<input type="hidden" name="cpage" value="1">
             
             </form>
             
@@ -546,187 +511,140 @@
 
         <div id="header_4">
         
-        
-        	<% if(loginMember == null){ %>
-        
-	            <!-- case1. 로그인 전 : 로그인 -->
-	            <div id="before_login">
-	                <a  href="#" onclick="openUserMenu()">Login</a>
-	            </div>
-	
-	            <div id="overlay"></div>
-	            
-	            
-			<%}else { %>
+        <div id="overlay"></div>
 
-            	<!-- case2. 로그인 후 : 프사+닉네임 -->
-	            <div id="after_login">
+            <!-- case1. 로그인 전 : 로그인 -->
+            <div id="before_login">
+                <a href="#" onclick="openUserMenu()">Login</a>
+            </div>
 
-				  <%if(loginMember.getProfileImg().equals("resources/profile_upfiles/null")){ %>
-					<div class="user_info">
-						<img class="pro" src="resources/images/profile_img_nocamera.png" alt="profile">
-						<b><%= loginMember.getNickname()%></b>
-					</div>
-				  <%}else{ %>
-                    <div class="user_info">
-                        <img class="pro" src="<%= loginMember.getProfileImg() %>">
-                        <b style="margin-top: 100px;"><%= loginMember.getNickname()%></b>
-                    </div>
-				  <%} %>
-				  
-				  <!-- 
-				  <%if(loginMember.getProfileImg().equals("resources/profile_upfiles/null")){ %>
-						  <div id="usermenu_page_login_success_userinfo" style="width: 100px; height: 100px;">
-							  <img src="resources/images/profile_img_nocamera.png" alt="profile" style="width: 100px; height: 100px;">
-							  <b><%= loginMember.getNickname()%></b>
-						  </div>
-					  	<%}else{ %>
-					  		<div id="usermenu_page_login_success_userinfo" style="width: 100px; height: 100px;">
-					  			<img class="pro" src="<%= loginMember.getProfileImg() %>" > <br>
-							 	<b><%= loginMember.getNickname()%></b>
-					  		</div>
-					  	<%} %> -->
-
-				   <button id="usermenu" onclick="openUserMenu()">
-					   <img src="resources/images/hamburger_btn.png">
-				   </button>
-			    </div>
-	            
-			<%} %>
-
-
-            <div id="overlay"></div>
             
-            <!-- 팝업창 -->
-            <div id="usermenu_page" class="usermenu_page">
+            <div id="usermenu_page" class="usermenu_page" style="display: none;">
 
                 <!-- 팝업창 닫힘 버튼 -->
-                <button id="closeUserMenu">×</button>
+                <button id="closeUserMenu">×</button>                
 
 
-				<% if(loginMember == null){ %>
-	                <!-- 로그인 -->
-	                <div id="usermenu_page_login">
-	
-	                    <form action="<%= contextPath %>/login.me" method="post">
-	
-	                        <h3>로그인</h3>
-	
-	                        <table style="background-color: #f1f2f3;">
-	                        
-	                            <tr>
-	                                <td><input type="text" name="memberId" class="form-control" placeholder="아이디" required></td>
-	                            </tr>
-	                            <tr>
-	                                <td><input type="password" name="memberPwd" class="form-control" placeholder="비밀번호" required></td>
-	                            </tr>
-	                            <tr>
-	                                <td><button class="btn btn-primary btn-block" type="submit">로그인</button></td>
-	                            </tr>
-	                            <tr>
-	                                <td align="center">
-	                                    <a href="views/common/findIdPwdPage.jsp">ID / 비밀번호 찾기</a> |
-	                                    <a href="<%=contextPath%>/terms.me">회원가입</a>
-	                                </td>
-	                            </tr>
-	                            
-	                        </table>
-	                        
-	                        <script>
-								function gotoFindIdPwdPage(){
-									location.href = "<%=contextPath%>/findIdPwdPage.me";
-								}	                        	
-	                        </script>               
-	    
-	                    </form>
-	                </div>
-	                
-                
-				<%}else if(loginMember.getMemberName().equals("관리자")){ %>
-				
-	                <!-- 로그인 성공-->
-	                <div id="usermenu_page_login_success" class="usermenu_page_content">
-	                    
-	                     <!-- 
-	                    <div id="usermenu_page_login_success_userinfo" style="width: 100px; height: 100px;">
-	                        <img src="resources/images/profile_img.png" alt="profile" style="width: 100px; height: 100px;">
-	                        <p><b><%=loginMember.getMemberName() %>님</b></p>
-	                    </div> -->
-	                    
-	                    
-	                    <%if(loginMember.getProfileImg().equals("resources/profile_upfiles/null")){ %>
-						  <div id="usermenu_page_login_success_userinfo" style="width: 100px; height: 100px;">
-							  <img src="resources/images/profile_img_nocamera.png" alt="profile" style="width: 100px; height: 100px;">
-							  <b><%= loginMember.getNickname()%></b>
-						  </div>
-					  	<%}else{ %>
-					  		<div id="usermenu_page_login_success_userinfo" style="width: 100px; height: 100px; margin-top:30px">
-					  			<img class="pro" src="<%= loginMember.getProfileImg() %>" style="width: 100px; height: 100px;"> <br>
-							 	<b><%= loginMember.getNickname()%></b>
-					  		</div>
-					  	<%} %>
-	                    
-	                    
-	                    <table style="margin-top:230px; height:200px;">
-	                    
-	                        <tr>
-	                            <td><input type="button" class="btn btn-primary btn-block" value="마이페이지" onclick = "location.href = '<%=contextPath%>/mypageform.me'"></td>
-	                        </tr>
-	                        <tr>
-	                            <td><input type="button" class="btn btn-secondary btn-block" value="회원정보 변경" onclick = "location.href = '<%=contextPath%>/mypageform.me'"></td>
-	                        </tr>
-	                        <tr>
-	                        	<td><input type="button" class="btn btn-secondary btn-block" value="관리자 페이지" onclick = "location.href = '<%=contextPath%>/manage.ad?cpage=1'"></td>
-	                        </tr>
-	                        <tr>
-	                            <td><input type="button" class="btn btn-secondary btn-block" value="로그아웃" onclick = "location.href = '<%=contextPath%>/logout.me' "></td>
-	                        </tr>
-	                        
-	                    </table>
-	
-	                </div>
-	                
-                <%}else{ %>
-                
-                	<!-- 로그인 성공-->
-	                <div id="usermenu_page_login_success" class="usermenu_page_content">
-	                    <!-- 
-	                    <div id="usermenu_page_login_success_userinfo" style="width: 100px; height: 100px;">
-	                        <img src="resources/images/profile_img.png" alt="profile" style="width: 100px; height: 100px;">
-	                        <p><b><%=loginMember.getMemberName() %>님</b></p>
-	                    </div> -->
-	                    
-	                    <%if(loginMember.getProfileImg().equals("resources/profile_upfiles/null")){ %>
-						  <div id="usermenu_page_login_success_userinfo" style="width: 100px; height: 100px;">
-							  <img src="resources/images/profile_img_nocamera.png" alt="profile" style="width: 100px; height: 100px;">
-							  <b><%= loginMember.getNickname()%></b>
-						  </div>
-					  	<%}else{ %>
-					  		<div id="usermenu_page_login_success_userinfo" style="width: 100px; height: 100px; margin-top:50px">
-					  			<img class="pro" src="<%= loginMember.getProfileImg() %>" style="width: 100px; height: 100px;"> <br>
-							 	<b><%= loginMember.getNickname()%></b>
-					  		</div>
-					  	<%} %>
-	                    
-	                    <table>
-	                    
-	                        <tr>
-	                            <td><input type="button" class="btn btn-primary btn-block" value="마이페이지" onclick = "location.href = '<%=contextPath%>/mypageform.me'"></td>
-	                        </tr>
-	                        <tr>
-	                            <td><input type="button" class="btn btn-secondary btn-block" value="회원정보 변경" onclick = "location.href = '<%=contextPath%>/mypageform.me'"></td>
-	                        </tr>
-	                        <tr>
-	                            <td><input type="button" class="btn btn-secondary btn-block" value="로그아웃" onclick = "location.href = '<%=contextPath%>/logout.me' "></td>
-	                        </tr>
-	                        
-	                    </table>
-	
-	                </div>
-                
-                
-                <%} %> 
+                <!-- ID / 비밀번호 찾기 -->
+                <div id="usermenu_page_find">
 
+
+                    <h3>ID / 비밀번호 찾기</h3>
+
+                    <div class="find_id_or_pwd">
+
+                        <ul class="nav nav-pills nav-justified" role="tablist" id="find_id_or_pwd_pills">
+
+                            <li class="nav-item">
+                                <a class="nav-link active btn btn-secondary" data-toggle="pill" href="#home">ID 찾기</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-secondary" data-toggle="pill" href="#menu1">비밀번호 찾기</a>
+                            </li>
+                            
+                        </ul>
+
+                        <div class="tab-content">
+
+                            <div id="home" class="container tab-pane active"><br>
+
+                                <% if(findIdMem == null){ %>
+                                
+                                    <!-- ID 찾기 실패 -->
+                                    <div id="usermenu_page_find_id_or_pwd_fail">
+                                        
+                                        <div class="usermenu_page_plain">
+
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <p>
+                                                            입력하신 정보와 일치하는 계정이 없습니다.
+                                                        </p>
+                                                        <p>
+                                                            회원가입을 원하시나요?
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input type="button" class="btn btn-sm btn-secondary" value="재시도" onclick="history.back()">
+                                                        <input type="button" class="btn btn-sm btn-primary" value="회원가입" onclick="location.href='<%=contextPath%>/terms.me'">
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                            
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                
+                                <%}else { %>
+                                
+                                    <!-- ID 찾기 성공 -->
+                                    <table id="hometable2" style="margin-top: 270px;">
+                                    	
+                                        <tr>
+                                            <p style="font-size: 12px; text-align: center; margin-top: 20px;">입력하신 정보와 일치하는 계정을 발견했습니다.</p>
+                                            <th>
+                                                <input type="radio"> <%= findIdMem.getMemberId()%>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <button class="btn btn-secondary" onclick = "location.href = 'views/common/findIdPwdPage.jsp'">비밀번호 찾기</button>
+                                                <button class="btn btn-secondary" onclick = "location.href ='<%=contextPath%>'">로그인</button>
+                                            </th>
+                                            
+                                        </tr>
+                                        
+
+                                    </table>
+                                    
+                                
+                                <%} %>
+                                    
+                                    
+                            </div>
+                            
+                            <!-- 비밀번호 찾기 -->
+                            <div id="menu1" class="container tab-pane fade"><br>
+
+                                <form action="">
+                                    <table>
+                                        <tr>
+                                            <td><input type="text" class="form-control" placeholder="이름"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" class="form-control" placeholder="이메일"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" class="form-control" placeholder="휴대폰 번호"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: x-small;">이름, 이메일, 휴대폰 모두 일치하셔야 합니다.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><button class="btn btn-primary btn-block">비밀번호 찾기</button></td>
+                                        </tr>
+
+                                    </table>
+                                </form>
+
+                            </div>
+                            
+                        </div>
+
+                    </div>
+    
+                    
+
+                </div>
+                
+                
+            </div>
                 
             </div>
                 
@@ -735,41 +653,41 @@
             <script>
 
                 function openUserMenu() {
-                    var overlay = document.getElementById('overlay');
-                    var userMenuPage = document.getElementById('usermenu_page');
-                    var closeButton = document.getElementById('closeUserMenu');
+                        var overlay = document.getElementById('overlay');
+                        var userMenuPage = document.getElementById('usermenu_page');
+                        var closeButton = document.getElementById('closeUserMenu');
 
-                    // 창 띄우기
-                    if (userMenuPage.style.display === 'block') {
-                        userMenuPage.style.display = 'none';
-                        overlay.style.display = 'none';
-                    } else {
-                        userMenuPage.style.display = 'block';
-                        overlay.style.display = 'block';
+                        // 팝업창 열기
+                        if (userMenuPage.style.display === 'block') {
+                            userMenuPage.style.display = 'none';
+                            overlay.style.display = 'none';
+                        } else {
+                            userMenuPage.style.display = 'block';
+                            overlay.style.display = 'block';
+                        }
+
+                        // X 눌러서 창 닫기
+                        closeButton.addEventListener('click', function() {
+                            userMenuPage.style.display = 'none';
+                            overlay.style.display = 'none';
+                        });
+
+                        // 뒷 배경 누르면 팝업창 닫기
+                        overlay.addEventListener('click', function() {
+                            userMenuPage.style.display = 'none';
+                            overlay.style.display = 'none';
+                        });
                     }
 
-                    // X누르면 창 닫힘
-                    closeButton.addEventListener('click', function() {
-                        userMenuPage.style.display = 'none';
-                        overlay.style.display = 'none';
-                    });
+                    // Trigger the openUserMenu function when the page loads
+                    window.onload = openUserMenu;
 
-                    // 배경 누르면 창 닫힘
-                    overlay.addEventListener('click', function() {
-                        userMenuPage.style.display = 'none';
-                        overlay.style.display = 'none';
-                    });
-                    
-                }
                 
                 
             </script>
 
         </div>
-
-
-    </div>
-    
+        
     <div id="navigator">
         <!-- navi -->
         <ul class="nav nav-pills justify-content-center">
@@ -777,19 +695,31 @@
                 <a class="btn btn-light nav_tab_font" href="<%=contextPath%>" style="box-shadow: 0px 0px 4px #585858">HOME</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-primary nav_tab_font" href="<%=contextPath%>/list.si?cpage=1" style="box-shadow: 0px 0px 4px #585858">여행지 추천</a>
+                <a class="btn btn-primary nav_tab_font" href="#" style="box-shadow: 0px 0px 4px #585858">여행지 추천</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-primary nav_tab_font" href="<%=contextPath %>/list.co?cpage=1" style="box-shadow: 0px 0px 4px #585858">여행 코스 추천</a>
+                <a class="btn btn-primary nav_tab_font" href="#" style="box-shadow: 0px 0px 4px #585858">여행 코스 추천</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-primary nav_tab_font" href="<%=contextPath %>/list.re?cpage=1" style="box-shadow: 0px 0px 4px #585858">여행 후기</a>
+                <a class="btn btn-primary nav_tab_font" href="#" style="box-shadow: 0px 0px 4px #585858">여행 후기</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-light nav_tab_font" href="<%=contextPath %>/list.no?cpage=1" style="box-shadow: 0px 0px 4px #585858">공지사항</a>
+                <a class="btn btn-light nav_tab_font" href="#" style="box-shadow: 0px 0px 4px #585858">공지사항</a>
             </li>
         </ul>
     </div>
-    
+    <%@ include file="mainBodyForInclude.jsp" %>
+
+            <!-- -------------위로가기 버튼------------ -->
+            <div style="position:fixed; bottom: 200px; right: 10%; width: 5px; height: 5px; z-index: 999;">
+                <a href="#"><img src="resources/images/upbutton.png" title="위로 가기" style="width: 50px;"></a>
+             </div>
+     
+             <!-- -------------대한민구석구석 사이트 가기 버튼------------ -->
+             <div style="position:fixed; bottom: 140px; right: 10%; width: 5px; height: 5px; z-index: 999;">
+                <a href="https://1330chat.visitkorea.or.kr:3000/#/ttalk_main/CHAT1330_160635739001093018/_0300_0100_main.do" target="_blank"><img src="resources/images/movesite.png" title="대한민국구석구석" style="width: 50px;"></a>
+             </div>
+             
 </body>
+<%@ include file= "footer.jsp" %>
 </html>

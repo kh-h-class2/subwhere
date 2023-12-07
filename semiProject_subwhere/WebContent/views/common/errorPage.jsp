@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<%@ include file = "header.jsp" %>
-
-	<h3>실패!</h3>
-
+에러났어
 </body>
 </html>
