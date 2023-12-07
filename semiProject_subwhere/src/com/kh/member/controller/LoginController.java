@@ -1,9 +1,7 @@
 package com.kh.member.controller;
 
-import java.io.Console;
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,26 +37,24 @@ public class LoginController extends HttpServlet {
 				
 				Member loginMember = new MemberService().loginMember(memberId, memberPwd);
 				//-----------------------------------------------------------------------
-				System.out.println(loginMember);
 				
 				
+				HttpSession session = request.getSession();
 				
-				if(loginMember == null) {
-					// 조회 결과 없음 == 로그인 실패!! => 에러문구가 보여지는 에러페이지 응답
-					request.setAttribute("errorMsg", "로그인 실패");
+				if(loginMember == null) { // 로그인 실패
 					
-					// 응답페이지(jsp)에게 위임시 필요한 객체 => RequestDispathcer
-					// 포워딩 방식
-					RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-					view.forward(request, response);
-				}else {
+					request.getSession().setAttribute("alertMsg", "로그인 실패! 로그인 정보 또는 서비스 이용 제한 여부를 확인해주세요.");
+					//session.setAttribute("alertMsg", "성공적으로 회원탈퇴 되었습니다. 그동안 이용해주셔서 감사합니다.");
+					response.sendRedirect(request.getContextPath()); // 메인화면으로
 					
-					HttpSession session = request.getSession();
+				}else { // 로그인 성공
+					
 					session.setAttribute("loginMember", loginMember);
-					response.sendRedirect(request.getContextPath());
-					System.out.println("성공");
+					response.sendRedirect(request.getContextPath()); // 메인 페이지로
+
+					
 				}
-	
+				
 	
 	}
 
