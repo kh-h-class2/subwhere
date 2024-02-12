@@ -2,11 +2,7 @@
 
 ![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&width=auto&section=header&text=Welcome%20to%20SUB-WHERE%20Project%20🖐️&fontSize=35&animation=fadeIn&fontAlignY=38)
 <br>
-## 프로젝트 소개
-수도권 내 지하철로 쉽고 간편하게 이동 가능한 여행지를 추천해주는 사이트
 
-
-<br><br>
 ## 개발 기간
 2023.08.21 ~ 2023.09.08 
 <br><br>
